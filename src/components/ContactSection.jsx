@@ -1,13 +1,16 @@
+import React, { useState } from "react";
 import {
   Linkedin,
   Mail,
   MapPin,
   Phone,
   Send,
+  Github,
+  Award,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -24,141 +27,195 @@ export const ContactSection = () => {
         description: "Thank you for your message. I'll get back to you soon.",
       });
       setIsSubmitting(false);
+      e.target.reset();
     }, 1500);
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
+    <section
+      id="contact"
+      className="py-24 px-4 relative bg-secondary/10 overflow-hidden"
+    >
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </p>
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Let's <span className="text-primary">Connect</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Ready to start a project or just want to say hi? My inbox is always
+            open.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Email</h4>
-                  <a
-                    href="mailto:hanikumar064@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    hanikumar064@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Phone</h4>
-                  <a
-                    href="tel:+919540849531"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +91-9540849531
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Location</h4>
-                  <span className="text-muted-foreground hover:text-primary transition-colors">
-                    New Delhi, Delhi, India
-                  </span>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Info Side */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 space-y-10"
+          >
+            <div>
+              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+              <div className="space-y-6">
+                <ContactInfoItem
+                  icon={<Mail className="text-primary" />}
+                  label="Email"
+                  value="hanikumar064@gmail.com"
+                  href="mailto:hanikumar064@gmail.com"
+                />
+                <ContactInfoItem
+                  icon={<Phone className="text-primary" />}
+                  label="Phone"
+                  value="+91-9540849531"
+                  href="tel:+919540849531"
+                />
+                <ContactInfoItem
+                  icon={<MapPin className="text-primary" />}
+                  label="Location"
+                  value="New Delhi, India"
+                />
               </div>
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-medium mb-4">Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a
+            <div>
+              <h4 className="text-xl font-bold mb-6">Social Profiles</h4>
+              <div className="flex gap-4">
+                <SocialLink
                   href="https://www.linkedin.com/in/hanikumar06/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin />
-                </a>
+                  icon={<Linkedin />}
+                />
+                <SocialLink
+                  href="https://github.com/hanikumar0"
+                  icon={<Github />}
+                />
               </div>
             </div>
-          </div>
 
-          <div className="bg-card p-8 rounded-lg shadow-xs">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-
-            {/* Move onSubmit to the form element to correctly handle submission */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
-                />
+            <div className="p-6 rounded-2xl bg-primary/5 border border-primary/10">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Award className="text-primary" />
+                </div>
+                <h4 className="font-bold">Open for Collaboration</h4>
               </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                I am currently looking for new opportunities and interesting
+                projects to work on. Feel free to reach out if you have
+                something in mind!
+              </p>
+            </div>
+          </motion.div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn("cosmic-button w-full flex items-center justify-center gap-2")}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
-          </div>
+          {/* Form Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7"
+          >
+            <div className="bg-card p-8 md:p-10 rounded-3xl border border-border/50 shadow-2xl shadow-primary/5">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold ml-1">Full Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="John Doe"
+                      className="w-full px-5 py-4 rounded-xl border border-border bg-secondary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-muted-foreground/50"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold ml-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="john@example.com"
+                      className="w-full px-5 py-4 rounded-xl border border-border bg-secondary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-muted-foreground/50"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold ml-1">Subject</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    placeholder="Project Inquiry"
+                    className="w-full px-5 py-4 rounded-xl border border-border bg-secondary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-muted-foreground/50"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold ml-1">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    placeholder="Tell me about your project..."
+                    className="w-full px-5 py-4 rounded-xl border border-border bg-secondary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none placeholder:text-muted-foreground/50"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="cosmic-button w-full py-4 text-lg"
+                >
+                  {isSubmitting ? "Sending Message..." : "Send Message"}
+                  {!isSubmitting && <Send size={20} />}
+                </button>
+              </form>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
+const ContactInfoItem = ({ icon, label, value, href }) => (
+  <div className="flex items-start gap-4 group">
+    <div className="p-4 rounded-2xl bg-card border border-border group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
+      {icon}
+    </div>
+    <div>
+      <p className="text-[10px] uppercase font-black text-muted-foreground tracking-widest">
+        {label}
+      </p>
+      {href ? (
+        <a
+          href={href}
+          className="text-lg font-bold hover:text-primary transition-colors"
+        >
+          {value}
+        </a>
+      ) : (
+        <span className="text-lg font-bold">{value}</span>
+      )}
+    </div>
+  </div>
+);
+
+const SocialLink = ({ href, icon }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-4 bg-card border border-border rounded-xl hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+  >
+    {React.cloneElement(icon, { size: 24 })}
+  </a>
+);
