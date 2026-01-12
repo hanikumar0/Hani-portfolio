@@ -57,7 +57,7 @@ export const HeroSection = () => {
               View Projects
             </a>
             <a
-              href="https://github.com/hanikumar0/portfolio/blob/main/RESUME_UPDATED.md"
+              href="https://drive.google.com/uc?export=download&id=1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2"
