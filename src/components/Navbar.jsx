@@ -48,76 +48,79 @@ export const Navbar = () => {
       className={cn(
         "fixed w-full z-50 transition-all duration-500",
         isScrolled
-          ? "py-4 bg-background/60 backdrop-blur-xl border-b border-border/50 shadow-xl"
-          : "py-6 bg-transparent"
+          ? "py-4"
+          : "py-6"
       )}
     >
-      <div className="container max-w-7xl flex items-center justify-between px-4 md:px-8">
-        <motion.a
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-black tracking-tighter hover:scale-105 transition-transform"
-          href="#hero"
-        >
-          <span className="text-primary font-black">HANI</span>
-          <span className="text-foreground">KUMAR</span>
-        </motion.a>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-6 px-8 py-2.5 rounded-full bg-secondary/20 border border-border/30 backdrop-blur-sm"
+      <div className="container max-w-7xl">
+        <div className={cn(
+          "px-6 py-3 transition-all duration-500 flex items-center justify-between",
+          isScrolled
+            ? "glass-panel dark:bg-black/40 shadow-2xl shadow-canva-purple/10"
+            : "bg-transparent"
+        )}>
+          <motion.a
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-2xl font-black tracking-tighter flex items-center gap-2"
+            href="#hero"
           >
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors duration-300 uppercase tracking-widest"
-              >
-                {item.name}
-              </a>
-            ))}
-          </motion.div>
+            <div className="w-10 h-10 bg-linear-to-br from-canva-teal to-canva-purple rounded-xl flex items-center justify-center text-white text-xl">H</div>
+            <span className="hidden sm:inline-block font-black text-foreground">HANI</span>
+          </motion.a>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="px-4 py-2 text-xs font-bold text-muted-foreground hover:text-canva-purple transition-all duration-300 uppercase tracking-widest hover:bg-canva-purple/5 rounded-full"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-4 pl-4 border-l border-border/50">
+              <button
+                onClick={toggleTheme}
+                className="p-2.5 rounded-xl hover:bg-secondary/50 text-foreground transition-all"
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+
+              <a
+                href="https://drive.google.com/uc?export=download&id=1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 rounded-xl bg-canva-purple text-white font-bold text-xs shadow-lg shadow-canva-purple/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+              >
+                <Download size={14} />
+                RESUME
+              </a>
+            </div>
+          </div>
+
+          {/* Mobile Toggle */}
+          <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-3 rounded-xl bg-card border border-border hover:border-primary/50 text-primary transition-all duration-300 shadow-lg shadow-primary/5"
+              className="p-2 rounded-lg text-foreground"
               aria-label="Toggle theme"
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-
-            <a
-              href="https://drive.google.com/uc?export=download&id=1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all"
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 text-foreground relative z-50"
+              aria-label="Toggle menu"
             >
-              <Download size={18} />
-              Resume
-            </a>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
-        </div>
-
-        {/* Mobile Toggle */}
-        <div className="flex items-center gap-4 md:hidden">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg bg-card border border-border text-primary transition-all"
-            aria-label="Toggle theme"
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-foreground relative z-50"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
         </div>
 
         {/* Mobile Menu Overlay */}
@@ -127,9 +130,9 @@ export const Navbar = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 md:hidden flex flex-col items-center justify-center p-8"
+              className="fixed inset-0 bg-background/95 backdrop-blur-2xl z-40 md:hidden flex flex-col items-center justify-center p-8"
             >
-              <div className="flex flex-col gap-8 text-center">
+              <div className="flex flex-col gap-6 text-center w-full max-w-sm">
                 {navItems.map((item, key) => (
                   <motion.a
                     initial={{ opacity: 0, y: 10 }}
@@ -138,7 +141,7 @@ export const Navbar = () => {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-3xl font-black text-foreground hover:text-primary transition-colors uppercase tracking-tighter"
+                    className="text-4xl font-black text-foreground hover:text-canva-purple transition-colors uppercase tracking-tighter"
                   >
                     {item.name}
                   </motion.a>
@@ -150,10 +153,10 @@ export const Navbar = () => {
                   href="https://drive.google.com/uc?export=download&id=1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 cosmic-button text-lg font-bold flex items-center gap-2"
+                  className="mt-6 px-8 py-4 rounded-[2rem] bg-linear-to-r from-canva-teal to-canva-purple text-white text-xl font-black flex items-center justify-center gap-3 shadow-2xl"
                 >
-                  <Download size={20} />
-                  Download Resume
+                  <Download size={24} />
+                  RESUME
                 </motion.a>
               </div>
             </motion.div>
@@ -163,3 +166,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+

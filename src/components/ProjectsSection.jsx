@@ -225,24 +225,30 @@ const projects = [
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative overflow-hidden">
-      <div className="container mx-auto max-w-6xl">
+    <section id="projects" className="py-24 px-4 relative overflow-hidden bg-secondary/5">
+      {/* Background Blobs */}
+      <div className="blob w-[300px] h-[300px] bg-canva-pink opacity-10 top-0 left-1/4" />
+      <div className="blob w-[400px] h-[400px] bg-canva-teal opacity-5 bottom-0 right-1/4" />
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Featured <span className="text-primary">Projects</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-canva-purple/10 text-canva-purple text-xs font-black mb-6 border border-canva-purple/20 tracking-widest uppercase">
+            <Trophy size={14} /> Showcase
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
+            Selected <span className="text-gradient">Creations</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A selection of my best work, showcasing my ability to solve complex
-            problems with elegant technical solutions.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            A curated space where logic meets design. Each project is a step forward in craftsmanship.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -252,15 +258,15 @@ export const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
           <a
             href="https://github.com/hanikumar0"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 group text-lg font-semibold hover:text-primary transition-colors"
+            className="secondary-button inline-flex group"
           >
-            Explore all projects on GitHub
+            Explore Full Catalog
             <ArrowRight className="group-hover:translate-x-1 transition-transform" />
           </a>
         </motion.div>
@@ -277,73 +283,42 @@ const ProjectCard = ({ project, index }) => {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       className={cn(
-        "group h-full flex flex-col bg-card rounded-3xl overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10",
-        project.featured ? "lg:scale-105" : ""
+        "canva-card flex flex-col h-full",
+        project.featured ? "lg:border-canva-purple/50 bg-canva-purple/5" : ""
       )}
     >
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-52 md:h-60 rounded-[1.5rem] overflow-hidden mb-6">
         <img
           src={project.image}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
         {project.featured && (
-          <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-1 shadow-lg">
-            <Trophy size={12} /> Featured
+          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-canva-purple text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-2 shadow-xl">
+            <Trophy size={14} /> MUST SEE
           </div>
         )}
       </div>
 
-      <div className="p-8 flex-1 flex flex-col">
+      <div className="flex flex-col flex-1">
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 text-[10px] font-bold bg-primary/5 text-primary border border-primary/10 rounded-lg uppercase tracking-wider"
+              className="px-3 py-1 text-[10px] font-black bg-secondary dark:bg-black/20 text-muted-foreground border border-border/50 rounded-lg uppercase tracking-tight"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+        <h3 className="text-2xl font-black mb-3 text-foreground leading-tight">
           {project.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-6 line-clamp-2 lg:line-clamp-3">
+        <p className="text-muted-foreground text-sm mb-6 line-clamp-2 md:line-clamp-3 leading-relaxed">
           {project.description}
         </p>
-
-        {project.featured && (
-          <div className="space-y-4 mb-8">
-            <div className="flex gap-3">
-              <div className="mt-1 shrink-0">
-                <AlertCircle size={16} className="text-red-400" />
-              </div>
-              <div>
-                <p className="text-[10px] uppercase font-black text-muted-foreground tracking-tighter">
-                  Problem
-                </p>
-                <p className="text-xs text-foreground/80 leading-relaxed">
-                  {project.problem}
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <div className="mt-1 shrink-0">
-                <CheckCircle2 size={16} className="text-green-400" />
-              </div>
-              <div>
-                <p className="text-[10px] uppercase font-black text-muted-foreground tracking-tighter">
-                  Solution
-                </p>
-                <p className="text-xs text-foreground/80 leading-relaxed">
-                  {project.solution}
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
 
         <div className="mt-auto pt-6 flex items-center justify-between border-t border-border/50">
           <div className="flex gap-4">
@@ -351,23 +326,22 @@ const ProjectCard = ({ project, index }) => {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-bold hover:text-primary transition-colors"
+              className="flex items-center gap-2 text-xs font-black text-canva-teal hover:opacity-80 transition-all uppercase tracking-widest"
             >
-              <ExternalLink size={18} /> Live
+              <ExternalLink size={16} /> Preview
             </a>
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-bold hover:text-primary transition-colors"
+              className="flex items-center gap-2 text-xs font-black text-foreground hover:text-canva-purple transition-all uppercase tracking-widest"
             >
-              <Github size={18} /> Code
+              <Github size={16} /> Source
             </a>
           </div>
-          <ArrowRight
-            size={20}
-            className="text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all"
-          />
+          <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center group-hover:bg-canva-purple group-hover:text-white transition-all">
+            <ArrowRight size={16} />
+          </div>
         </div>
       </div>
     </motion.article>
