@@ -1,8 +1,11 @@
 import { ArrowDown, Mail, Briefcase, Download, Github, Linkedin, Code, Rocket } from "lucide-react";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
+import { Suspense, lazy } from "react";
 import { Magnetic } from "./Magnetic";
 import { useSound } from "../hooks/use-sound";
+
+const Desk3D = lazy(() => import("./Desk3D").then(module => ({ default: module.Desk3D })));
 
 export const HeroSection = () => {
   const { play: playClick } = useSound("/sounds/click.mp3", 0.3);
@@ -167,69 +170,31 @@ export const HeroSection = () => {
 
           {/* Visual 3D Component */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateY: 20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="lg:col-span-5 hidden lg:block"
           >
-            <div className="relative group perspective-1000">
-              <div className="absolute -inset-4 bg-linear-to-r from-canva-teal via-canva-purple to-canva-pink rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-60 transition-opacity duration-700" />
-              <motion.div
-                whileHover={{ rotateY: 15, rotateX: -10, scale: 1.05 }}
-                className="canva-card-3d bg-card border-4 border-white dark:border-white/10 relative z-10 shadow-2xl transition-all duration-500 transform-gpu"
-              >
-                <div className="aspect-square flex items-center justify-center p-8 bg-linear-to-br from-secondary/50 to-background rounded-[2rem] overflow-hidden relative">
-                  {/* Floating 3D Shapes (Simulated) */}
-                  <div className="absolute top-5 left-5 w-12 h-12 bg-canva-teal/20 rounded-lg blur-xl animate-pulse" />
-                  <div className="absolute bottom-10 right-10 w-20 h-20 bg-canva-purple/20 rounded-full blur-2xl animate-pulse-subtle" />
+            <div className="relative group p-4 bg-linear-to-br from-white/5 to-white/10 rounded-[4rem] backdrop-blur-xl border-2 border-white/20 shadow-[0_0_80px_rgba(125,42,232,0.1)]">
+              <div className="absolute -inset-4 bg-linear-to-r from-canva-teal via-canva-purple to-canva-pink rounded-[4.5rem] blur-3xl opacity-10 group-hover:opacity-30 transition-opacity duration-700" />
 
-                  <motion.div
-                    animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative z-20"
-                  >
-                    <div className="absolute -top-10 -right-10 w-24 h-24 bg-canva-pink rounded-full blur-2xl opacity-50" />
-                    <div className="bg-white/10 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/20 shadow-2xl">
-                      <Github className="w-32 h-32 md:w-48 md:h-48 text-foreground" />
-                    </div>
+              <div className="aspect-[4/5] rounded-[3.5rem] overflow-hidden bg-black/20 relative">
+                <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-canva-purple font-black animate-pulse">LOADING VIRTUAL SPACE...</div>}>
+                  <Desk3D />
+                </Suspense>
 
-                    {/* Floating 2D icons around the 3D element */}
-                    <motion.div
-                      animate={{ y: [0, -10, 0], rotate: [12, 20, 12] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      className="absolute -top-6 -left-12 p-4 bg-white shadow-2xl rounded-2xl border border-border/50 z-30"
-                    >
-                      <Code className="text-canva-teal" size={32} />
-                    </motion.div>
-
-                    <motion.div
-                      animate={{ y: [0, 10, 0], rotate: [-12, -20, -12] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className="absolute -bottom-6 -right-12 p-4 bg-white shadow-2xl rounded-2xl border border-border/50 z-30"
-                    >
-                      <Rocket className="text-canva-yellow" size={32} />
-                    </motion.div>
-                  </motion.div>
-                </div>
-
-                <div className="mt-8 space-y-4">
-                  <div className="flex justify-between items-end">
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Architectural Integrity</p>
-                      <h4 className="text-lg font-black">System Quality</h4>
-                    </div>
-                    <span className="text-canva-teal font-black">98%</span>
+                {/* Floating HUD Elements */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute bottom-10 left-10 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 z-20 space-y-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-[10px] font-black text-white uppercase tracking-widest">Environment Live</span>
                   </div>
-                  <div className="h-3 w-full bg-secondary/50 rounded-full overflow-hidden border border-border/20">
-                    <motion.div
-                      className="h-full bg-linear-to-r from-canva-teal to-canva-purple"
-                      initial={{ width: 0 }}
-                      animate={{ width: "98%" }}
-                      transition={{ duration: 2, delay: 1 }}
-                    />
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
