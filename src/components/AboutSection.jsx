@@ -1,4 +1,4 @@
-import { Briefcase, Code, User, Rocket, GraduationCap, Heart, Globe, Sparkles, Cpu } from "lucide-react";
+import { Briefcase, Code, User, Rocket, GraduationCap, Heart, Globe, Sparkles, Cpu, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 import { Tilt } from "./Tilt";
 import { cn } from "@/lib/utils";
