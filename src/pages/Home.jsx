@@ -3,10 +3,10 @@ import { PageLayout } from "../components/PageLayout";
 import { HeroSection } from "../components/HeroSection";
 import { Marquee } from "../components/Marquee";
 
-// Optimized code-splitting
-const ProjectsSection = lazy(() => import("../components/ProjectsSection"));
-const GitHubStatsSection = lazy(() => import("../components/GitHubStatsSection"));
-const PhilosophySection = lazy(() => import("../components/PhilosophySection"));
+// Optimized code-splitting for named exports
+const ProjectsSection = lazy(() => import("../components/ProjectsSection").then(m => ({ default: m.ProjectsSection })));
+const GitHubStatsSection = lazy(() => import("../components/GitHubStatsSection").then(m => ({ default: m.GitHubStatsSection })));
+const PhilosophySection = lazy(() => import("../components/PhilosophySection").then(m => ({ default: m.PhilosophySection })));
 const BlogSection = lazy(() => import("../components/BlogSection").then(m => ({ default: m.BlogSection })));
 
 export const Home = () => {
