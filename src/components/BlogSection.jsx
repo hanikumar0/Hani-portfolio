@@ -6,13 +6,13 @@ import { Tilt } from "./Tilt";
 
 export const BlogSection = () => {
     return (
-        <section id="blog" className="py-32 px-4 bg-secondary/5 relative overflow-hidden">
+        <section id="blog" className="py-16 px-4 bg-secondary/5 relative overflow-hidden">
             {/* Background Blobs */}
             <div className="blob w-[500px] h-[500px] bg-canva-teal/5 top-0 right-0" />
             <div className="blob w-[300px] h-[300px] bg-canva-purple/5 bottom-0 left-0" />
 
             <div className="container mx-auto max-w-7xl relative z-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-8">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}

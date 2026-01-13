@@ -57,54 +57,54 @@ export const BlogPostPage = () => {
                             </div>
                         </div>
 
-                        <div className="prose prose-invert max-w-none text-muted-foreground text-lg leading-relaxed py-12">
+                        <div className="prose prose-invert max-w-none text-muted-foreground text-lg leading-relaxed py-8">
                             {typeof post.content === "string" ? (
                                 <p>{post.content}</p>
                             ) : (
-                                <div className="space-y-16">
+                                <div className="space-y-10">
                                     {/* Overview */}
-                                    <section className="space-y-6">
+                                    <section className="space-y-3">
                                         <h2 className="text-foreground text-3xl font-black tracking-tight">Overview</h2>
-                                        <p className="text-xl leading-relaxed">{post.content.overview}</p>
+                                        <p className="text-lg leading-relaxed">{post.content.overview}</p>
                                     </section>
 
                                     {/* Problem */}
-                                    <section className="space-y-6">
+                                    <section className="space-y-3">
                                         <h2 className="text-foreground text-3xl font-black tracking-tight">Problem</h2>
                                         <p>{post.content.problem.description}</p>
-                                        <ul className="list-none space-y-4 p-0">
+                                        <ul className="list-none space-y-2 p-0">
                                             {post.content.problem.points.map((pt, i) => (
                                                 <li key={i} className="flex items-start gap-4">
-                                                    <span className="w-2 h-2 rounded-full bg-canva-pink mt-3 flex-shrink-0" />
-                                                    <span>{pt}</span>
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-canva-pink mt-2.5 flex-shrink-0" />
+                                                    <span className="text-base">{pt}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </section>
 
                                     {/* Solution */}
-                                    <section className="space-y-6">
+                                    <section className="space-y-3">
                                         <h2 className="text-foreground text-3xl font-black tracking-tight">Solution</h2>
                                         <p>{post.content.solution.description}</p>
-                                        <ul className="list-none space-y-4 p-0">
+                                        <ul className="list-none space-y-2 p-0">
                                             {post.content.solution.points.map((pt, i) => (
                                                 <li key={i} className="flex items-start gap-4">
-                                                    <span className="w-2 h-2 rounded-full bg-canva-teal mt-3 flex-shrink-0" />
-                                                    <span>{pt}</span>
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-canva-teal mt-2.5 flex-shrink-0" />
+                                                    <span className="text-base">{pt}</span>
                                                 </li>
                                             ))}
                                         </ul>
-                                        <div className="p-8 rounded-3xl bg-secondary/30 border-2 border-canva-purple/20 font-black text-foreground italic shadow-xl">
+                                        <div className="p-6 rounded-2xl bg-secondary/30 border border-canva-purple/20 font-black text-foreground italic shadow-md">
                                             "{post.content.solution.insight}"
                                         </div>
                                     </section>
 
                                     {/* Impact */}
-                                    <section className="space-y-6">
+                                    <section className="space-y-3">
                                         <h2 className="text-foreground text-3xl font-black tracking-tight">Impact</h2>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             {post.content.impact.points.map((pt, i) => (
-                                                <div key={i} className="p-6 rounded-2xl bg-card border border-border/50 font-black text-foreground hover:border-canva-purple/30 transition-all">
+                                                <div key={i} className="p-4 rounded-xl bg-card border border-border/50 font-black text-foreground text-sm hover:border-canva-purple/30 transition-all">
                                                     {pt}
                                                 </div>
                                             ))}
@@ -112,11 +112,11 @@ export const BlogPostPage = () => {
                                     </section>
 
                                     {/* Tech Stack */}
-                                    <section className="space-y-6">
+                                    <section className="space-y-3">
                                         <h2 className="text-foreground text-3xl font-black tracking-tight">Tech Stack</h2>
-                                        <div className="flex flex-wrap gap-3">
+                                        <div className="flex flex-wrap gap-2">
                                             {post.content.techStack.map((tech, i) => (
-                                                <span key={i} className="px-5 py-2 rounded-full bg-secondary/50 text-foreground text-xs font-black uppercase tracking-widest border border-border/50">
+                                                <span key={i} className="px-4 py-1.5 rounded-full bg-secondary/50 text-foreground text-[10px] font-black uppercase tracking-widest border border-border/50">
                                                     {tech}
                                                 </span>
                                             ))}
@@ -124,9 +124,9 @@ export const BlogPostPage = () => {
                                     </section>
 
                                     {/* Learning */}
-                                    <section className="p-10 rounded-[3rem] bg-linear-to-br from-canva-purple/10 to-canva-teal/10 border border-white/10">
-                                        <h3 className="text-foreground text-2xl font-black mb-4">What I Learned</h3>
-                                        <p className="italic text-lg">"{post.content.learning}"</p>
+                                    <section className="p-8 rounded-[2rem] bg-linear-to-br from-canva-purple/10 to-canva-teal/10 border border-white/10">
+                                        <h3 className="text-foreground text-xl font-black mb-2">What I Learned</h3>
+                                        <p className="italic text-base">"{post.content.learning}"</p>
                                     </section>
                                 </div>
                             )}
