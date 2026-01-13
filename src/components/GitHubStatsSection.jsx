@@ -187,7 +187,7 @@ export const GitHubStatsSection = () => {
                             </div>
                         ) : !imageErrors.langs ? (
                             <img
-                                src={`${langsBaseUrl}?username=hanikumar0&layout=compact&theme=transparent&hide_border=true&title_color=8b5cf6&text_color=94a3b8&langs_count=8&cache_seconds=1800`}
+                                src={`${langsBaseUrl}?username=hanikumar0&layout=compact&theme=transparent&hide_border=true&title_color=8b5cf6&text_color=94a3b8&langs_count=8&cache_seconds=1800&hide=Jupyter%20Notebook,HTML,CSS`}
                                 alt="Top Languages"
                                 onError={() => handleImageError('langs')}
                                 className="w-full max-w-sm filter drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500"
