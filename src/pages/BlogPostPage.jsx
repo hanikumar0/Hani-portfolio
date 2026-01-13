@@ -57,23 +57,79 @@ export const BlogPostPage = () => {
                             </div>
                         </div>
 
-                        <div className="prose prose-invert max-w-none text-muted-foreground text-lg leading-relaxed space-y-8 py-12">
-                            <p className="text-foreground font-black text-2xl italic">
-                                "{post.excerpt}"
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <h2 className="text-foreground text-3xl font-black pt-8">The Technical Challenge</h2>
-                            <p>
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <div className="p-8 rounded-3xl bg-secondary/50 border border-border/50 font-black text-foreground">
-                                Key Insight: Architecture is not about making choices, but about delaying them long enough to have sufficient information.
-                            </div>
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                            </p>
+                        <div className="prose prose-invert max-w-none text-muted-foreground text-lg leading-relaxed py-12">
+                            {typeof post.content === "string" ? (
+                                <p>{post.content}</p>
+                            ) : (
+                                <div className="space-y-16">
+                                    {/* Overview */}
+                                    <section className="space-y-6">
+                                        <h2 className="text-foreground text-3xl font-black tracking-tight">Overview</h2>
+                                        <p className="text-xl leading-relaxed">{post.content.overview}</p>
+                                    </section>
+
+                                    {/* Problem */}
+                                    <section className="space-y-6">
+                                        <h2 className="text-foreground text-3xl font-black tracking-tight">Problem</h2>
+                                        <p>{post.content.problem.description}</p>
+                                        <ul className="list-none space-y-4 p-0">
+                                            {post.content.problem.points.map((pt, i) => (
+                                                <li key={i} className="flex items-start gap-4">
+                                                    <span className="w-2 h-2 rounded-full bg-canva-pink mt-3 flex-shrink-0" />
+                                                    <span>{pt}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </section>
+
+                                    {/* Solution */}
+                                    <section className="space-y-6">
+                                        <h2 className="text-foreground text-3xl font-black tracking-tight">Solution</h2>
+                                        <p>{post.content.solution.description}</p>
+                                        <ul className="list-none space-y-4 p-0">
+                                            {post.content.solution.points.map((pt, i) => (
+                                                <li key={i} className="flex items-start gap-4">
+                                                    <span className="w-2 h-2 rounded-full bg-canva-teal mt-3 flex-shrink-0" />
+                                                    <span>{pt}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <div className="p-8 rounded-3xl bg-secondary/30 border-2 border-canva-purple/20 font-black text-foreground italic shadow-xl">
+                                            "{post.content.solution.insight}"
+                                        </div>
+                                    </section>
+
+                                    {/* Impact */}
+                                    <section className="space-y-6">
+                                        <h2 className="text-foreground text-3xl font-black tracking-tight">Impact</h2>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {post.content.impact.points.map((pt, i) => (
+                                                <div key={i} className="p-6 rounded-2xl bg-card border border-border/50 font-black text-foreground hover:border-canva-purple/30 transition-all">
+                                                    {pt}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </section>
+
+                                    {/* Tech Stack */}
+                                    <section className="space-y-6">
+                                        <h2 className="text-foreground text-3xl font-black tracking-tight">Tech Stack</h2>
+                                        <div className="flex flex-wrap gap-3">
+                                            {post.content.techStack.map((tech, i) => (
+                                                <span key={i} className="px-5 py-2 rounded-full bg-secondary/50 text-foreground text-xs font-black uppercase tracking-widest border border-border/50">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </section>
+
+                                    {/* Learning */}
+                                    <section className="p-10 rounded-[3rem] bg-linear-to-br from-canva-purple/10 to-canva-teal/10 border border-white/10">
+                                        <h3 className="text-foreground text-2xl font-black mb-4">What I Learned</h3>
+                                        <p className="italic text-lg">"{post.content.learning}"</p>
+                                    </section>
+                                </div>
+                            )}
                         </div>
                     </motion.div>
                 </div>
