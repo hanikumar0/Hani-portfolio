@@ -525,6 +525,7 @@ const ProjectCard = ({ project, index, onViewCase }) => {
               alt={project.title}
               loading={index < 3 ? "eager" : "lazy"}
               decoding="async"
+              fetchPriority={index < 3 ? "high" : "auto"}
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />

@@ -48,7 +48,13 @@ export const TestimonialsSection = () => {
                             <Quote className="absolute top-6 right-8 text-primary/10 h-12 w-12 group-hover:text-primary/20 transition-colors" />
                             <p className="text-muted-foreground italic mb-6 relative z-10 leading-relaxed text-sm md:text-base group-hover:text-foreground transition-colors duration-500">"{t.content}"</p>
                             <div className="flex items-center gap-4">
-                                <img src={t.image} alt={t.name} className="h-12 w-12 rounded-full border-2 border-primary/20 bg-secondary" />
+                                <img
+                                    src={t.image}
+                                    alt={t.name}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="h-12 w-12 rounded-full border-2 border-primary/20 bg-secondary"
+                                />
                                 <div>
                                     <h4 className="font-bold text-sm text-foreground">{t.name}</h4>
                                 </div>

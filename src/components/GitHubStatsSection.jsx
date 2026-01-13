@@ -163,6 +163,8 @@ export const GitHubStatsSection = () => {
                                 <img
                                     src={`${statsBaseUrl}?username=hanikumar0&show_icons=true&theme=transparent&hide_border=true&title_color=8b5cf6&text_color=94a3b8&icon_color=8b5cf6&hide_rank=false&count_private=true&cache_seconds=1800`}
                                     alt="GitHub Stats"
+                                    loading="lazy"
+                                    decoding="async"
                                     onError={() => handleImageError('stats')}
                                     className="w-full max-w-md filter drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500"
                                 />
