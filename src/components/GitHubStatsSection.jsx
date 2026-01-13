@@ -188,44 +188,35 @@ export const GitHubStatsSection = () => {
                     viewport={{ once: true }}
                     className="mt-8 bg-card/40 backdrop-blur-md p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-border/50 overflow-hidden min-h-[180px] md:min-h-[220px] transition-all duration-500 flex flex-col items-center justify-center shadow-2xl shadow-primary/5"
                 >
-                    {!imageErrors.streak ? (
-                        <div className="relative w-full flex flex-col items-center">
-                            <img
-                                src="https://github-readme-streak-stats.herokuapp.com/?user=hanikumar0&theme=transparent&hide_border=true&stroke=8b5cf6&ring=8b5cf6&fire=8b5cf6&currStreakLabel=8b5cf6&sideLabels=94a3b8&dates=94a3b8"
-                                alt="Contribution Streak"
-                                onError={() => handleImageError('streak')}
-                                className="w-full max-w-4xl filter drop-shadow-2xl hover:scale-[1.01] transition-transform duration-500 scale-95 md:scale-100"
-                            />
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full max-w-4xl py-4 md:py-6 text-center md:text-left">
+                        <div>
+                            <h3 className="text-2xl md:text-3xl font-black text-foreground mb-3">Commitment to Growth</h3>
+                            <p className="text-muted-foreground text-base md:text-lg max-w-md">
+                                I maintain a high-frequency shipping cycle, consistently pushing production-ready code and optimizing system performance.
+                            </p>
                         </div>
-                    ) : (
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full max-w-4xl py-4 md:py-6">
-                            <div className="text-center md:text-left">
-                                <h3 className="text-2xl md:text-3xl font-black text-foreground mb-3">Commitment to Growth</h3>
-                                <p className="text-muted-foreground text-base md:text-lg max-w-md">
-                                    I consistently ship code, resolve issues, and build meaningful projects every single week.
-                                </p>
-                            </div>
 
-                            {events && (
-                                <div className="grid grid-cols-2 gap-3 md:gap-4">
-                                    <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-primary/10 border border-primary/20 text-center">
-                                        <div className="flex justify-center mb-1 md:mb-2 text-primary">
-                                            <Activity size={20} md:size={24} />
-                                        </div>
-                                        <p className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase mb-1">Recent Acts</p>
-                                        <p className="text-2xl md:text-3xl font-black text-foreground">{events.recentActivity}</p>
+                        {loading ? (
+                            <div className="h-10 w-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+                        ) : events && (
+                            <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-primary/10 border border-primary/20 text-center">
+                                    <div className="flex justify-center mb-1 md:mb-2 text-primary">
+                                        <Activity size={24} />
                                     </div>
-                                    <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-secondary/30 border border-border/40 text-center">
-                                        <div className="flex justify-center mb-1 md:mb-2 text-primary">
-                                            <Calendar size={20} md:size={24} />
-                                        </div>
-                                        <p className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase mb-1">Latest Repo</p>
-                                        <p className="text-xs md:text-sm font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap max-w-[80px] md:max-w-[100px]">{events.latestRepo}</p>
-                                    </div>
+                                    <p className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase mb-1">Recent Acts</p>
+                                    <p className="text-2xl md:text-4xl font-black text-foreground tabular-nums">{events.recentActivity}</p>
                                 </div>
-                            )}
-                        </div>
-                    )}
+                                <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-secondary/30 border border-border/40 text-center">
+                                    <div className="flex justify-center mb-1 md:mb-2 text-primary">
+                                        <Zap size={24} />
+                                    </div>
+                                    <p className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase mb-1">Daily Pulse</p>
+                                    <p className="text-2xl md:text-4xl font-black text-foreground tabular-nums">Active</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </motion.div>
 
                 <p className="text-center mt-8 text-sm text-muted-foreground flex items-center justify-center gap-2 font-medium opacity-60">
