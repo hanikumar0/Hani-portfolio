@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Navbar } from "./Navbar";
 import { StarBackground } from "./StarBackground";
 import { MouseSpotlight } from "./MouseSpotlight";
+import { CustomCursor } from "./CustomCursor";
 import { Footer } from "./Footer";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,6 +13,7 @@ export const PageLayout = ({ children }) => {
 
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+            <CustomCursor />
             <StarBackground />
             <MouseSpotlight />
             <Navbar />
