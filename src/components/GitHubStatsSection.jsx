@@ -139,72 +139,46 @@ export const GitHubStatsSection = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <div className="flex justify-center">
                     {/* Primary Stats Card */}
-                    <StatCard delay={0} animateX={-30}>
-                        {loading ? (
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="h-10 w-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-                                <p className="text-sm font-bold text-muted-foreground animate-pulse">SYNCING PROFILE...</p>
-                            </div>
-                        ) : liveStats ? (
-                            <TextFallback
-                                title="Live Profile Data"
-                                icon={<Users size={20} />}
-                                stats={[
-                                    { label: "Repos", value: liveStats.public_repos, icon: <Code2 size={16} /> },
-                                    { label: "Followers", value: liveStats.followers, icon: <Users size={16} /> },
-                                    { label: "Gists", value: liveStats.public_gists, icon: <GitFork size={16} /> },
-                                    { label: "Account", value: "Verified", icon: <Star size={16} /> }
-                                ]}
-                            />
-                        ) : !imageErrors.stats ? (
-                            <img
-                                src={`${statsBaseUrl}?username=hanikumar0&show_icons=true&theme=transparent&hide_border=true&title_color=8b5cf6&text_color=94a3b8&icon_color=8b5cf6&hide_rank=false&count_private=true&cache_seconds=1800`}
-                                alt="GitHub Stats"
-                                onError={() => handleImageError('stats')}
-                                className="w-full max-w-md filter drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500"
-                            />
-                        ) : (
-                            <TextFallback
-                                title="Platform Highlights"
-                                stats={[
-                                    { label: "Stars", value: "10+", icon: <Star size={16} /> },
-                                    { label: "Commits", value: "500+", icon: <Github size={16} /> },
-                                    { label: "Repos", value: "16", icon: <Code2 size={16} /> },
-                                    { label: "Activity", value: "High", icon: <Zap size={16} /> }
-                                ]}
-                            />
-                        )}
-                    </StatCard>
-
-                    {/* Tech Stack Card */}
-                    <StatCard delay={0.1} animateX={30}>
-                        {loading ? (
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="h-10 w-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-                                <p className="text-sm font-bold text-muted-foreground animate-pulse">ANALYZING STACK...</p>
-                            </div>
-                        ) : !imageErrors.langs ? (
-                            <img
-                                src={`${langsBaseUrl}?username=hanikumar0&layout=compact&theme=transparent&hide_border=true&title_color=8b5cf6&text_color=94a3b8&langs_count=8&cache_seconds=1800&hide=Jupyter%20Notebook,HTML,CSS`}
-                                alt="Top Languages"
-                                onError={() => handleImageError('langs')}
-                                className="w-full max-w-sm filter drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500"
-                            />
-                        ) : (
-                            <TextFallback
-                                title="Core Technologies"
-                                icon={<Code2 size={20} />}
-                                stats={[
-                                    { label: "Frontend", value: "React & JS" },
-                                    { label: "Mobile", value: "Native" },
-                                    { label: "Server", value: "Node.js" },
-                                    { label: "Design", value: "Modern" }
-                                ]}
-                            />
-                        )}
-                    </StatCard>
+                    <div className="w-full max-w-2xl">
+                        <StatCard delay={0} animateX={0}>
+                            {loading ? (
+                                <div className="flex flex-col items-center gap-4">
+                                    <div className="h-10 w-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+                                    <p className="text-sm font-bold text-muted-foreground animate-pulse">SYNCING PROFILE...</p>
+                                </div>
+                            ) : liveStats ? (
+                                <TextFallback
+                                    title="Live Profile Data"
+                                    icon={<Users size={20} />}
+                                    stats={[
+                                        { label: "Repos", value: liveStats.public_repos, icon: <Code2 size={16} /> },
+                                        { label: "Followers", value: liveStats.followers, icon: <Users size={16} /> },
+                                        { label: "Gists", value: liveStats.public_gists, icon: <GitFork size={16} /> },
+                                        { label: "Account", value: "Verified", icon: <Star size={16} /> }
+                                    ]}
+                                />
+                            ) : !imageErrors.stats ? (
+                                <img
+                                    src={`${statsBaseUrl}?username=hanikumar0&show_icons=true&theme=transparent&hide_border=true&title_color=8b5cf6&text_color=94a3b8&icon_color=8b5cf6&hide_rank=false&count_private=true&cache_seconds=1800`}
+                                    alt="GitHub Stats"
+                                    onError={() => handleImageError('stats')}
+                                    className="w-full max-w-md filter drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500"
+                                />
+                            ) : (
+                                <TextFallback
+                                    title="Platform Highlights"
+                                    stats={[
+                                        { label: "Stars", value: "10+", icon: <Star size={16} /> },
+                                        { label: "Commits", value: "500+", icon: <Github size={16} /> },
+                                        { label: "Repos", value: "16", icon: <Code2 size={16} /> },
+                                        { label: "Activity", value: "High", icon: <Zap size={16} /> }
+                                    ]}
+                                />
+                            )}
+                        </StatCard>
+                    </div>
                 </div>
 
                 {/* Activity & Streak Section */}
