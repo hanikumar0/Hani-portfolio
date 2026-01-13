@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export const BlogPage = () => {
     return (
         <PageLayout>
-            <div className="pt-32 pb-20 px-4 min-h-screen bg-background relative overflow-hidden">
+            <div className="pt-12 pb-12 px-4 min-h-screen bg-background relative overflow-hidden">
                 {/* Background Accents */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-canva-teal/5 blur-[120px] rounded-full pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-canva-purple/5 blur-[120px] rounded-full pointer-events-none" />
@@ -18,28 +18,28 @@ export const BlogPage = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-center mb-24"
+                        className="text-center mb-12"
                     >
-                        <span className="px-4 py-1.5 rounded-full bg-canva-purple/10 text-canva-purple text-[10px] font-black tracking-widest uppercase border border-canva-purple/20 mb-8 inline-block">
+                        <span className="px-4 py-1.5 rounded-full bg-canva-purple/10 text-canva-purple text-[10px] font-black tracking-widest uppercase border border-canva-purple/20 mb-4 inline-block">
                             ENGINEERING LOGS
                         </span>
-                        <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-[0.85] mb-8">
+                        <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.85] mb-4">
                             Technical <br />
                             <span className="text-gradient">Notebook</span>
                         </h1>
-                        <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
                             Documenting the journey of building scalable systems, solving architectural puzzles, and chasing the perfect deployment.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 gap-12">
+                    <div className="grid grid-cols-1 gap-6">
                         {blogPosts.map((post, index) => (
                             <motion.div
                                 key={post.id}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
-                                className="group p-8 md:p-12 rounded-[3.5rem] bg-card border border-border/50 hover:border-canva-purple/30 transition-all duration-500 hover:shadow-2xl hover:shadow-canva-purple/5"
+                                className="group p-6 rounded-[2.5rem] bg-card border border-border/50 hover:border-canva-purple/30 transition-all duration-500 hover:shadow-xl"
                             >
                                 <div className="flex flex-col md:flex-row gap-12 items-center">
                                     <div className="w-full md:w-1/3 aspect-square rounded-[2.5rem] bg-secondary flex items-center justify-center relative overflow-hidden">

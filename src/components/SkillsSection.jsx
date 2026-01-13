@@ -77,7 +77,7 @@ export const SkillsSection = () => {
   }, []);
 
   return (
-    <section id="skills" className="py-32 px-4 relative overflow-hidden bg-background">
+    <section id="skills" className="py-12 px-4 relative overflow-hidden bg-background">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-grid-slate-100/[0.03] -z-10" />
 

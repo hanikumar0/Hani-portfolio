@@ -293,7 +293,7 @@ export const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="py-24 px-4 relative overflow-hidden bg-secondary/5"
+      className="py-12 px-4 relative overflow-hidden bg-secondary/5"
     >
       {/* Background Blobs */}
       <div className="blob w-[300px] h-[300px] bg-canva-pink opacity-10 top-0 left-1/4" />

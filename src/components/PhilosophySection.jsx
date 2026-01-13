@@ -5,13 +5,13 @@ import { Tilt } from "./Tilt";
 
 export const PhilosophySection = () => {
     return (
-        <section className="py-32 px-4 relative overflow-hidden bg-background">
+        <section className="py-12 px-4 relative overflow-hidden bg-background">
             <div className="container mx-auto max-w-7xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-24"
+                    className="text-center mb-8"
                 >
                     <span className="inline-block px-4 py-1.5 rounded-full bg-canva-teal/10 text-canva-teal text-[10px] font-black uppercase tracking-[0.3em] mb-4 border border-canva-teal/20">
                         MY MANIFESTO

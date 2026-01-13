@@ -115,7 +115,7 @@ export const GitHubStatsSection = () => {
         : "https://github-readme-stats.vercel.app/api/top-langs/";
 
     return (
-        <section className="py-24 px-4 bg-background relative overflow-hidden transition-colors duration-500">
+        <section className="py-12 px-4 bg-background relative overflow-hidden transition-colors duration-500">
             {/* Ambient Background Glows */}
             <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] pointer-events-none animate-pulse" />
             <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
@@ -125,7 +125,7 @@ export const GitHubStatsSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-6"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 border border-primary/20">
                         <Github size={16} />

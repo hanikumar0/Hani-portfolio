@@ -19,7 +19,7 @@ export const Home = () => {
         speed={25}
       />
 
-      <Suspense fallback={<div className="h-96 flex items-center justify-center"><div className="w-10 h-10 border-4 border-canva-purple/20 border-t-canva-purple rounded-full animate-spin" /></div>}>
+      <Suspense fallback={<div className="py-20 flex items-center justify-center"><div className="w-10 h-10 border-4 border-canva-purple/20 border-t-canva-purple rounded-full animate-spin" /></div>}>
         <PhilosophySection />
         <BlogSection />
         <ProjectsSection />
