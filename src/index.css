@@ -107,12 +107,12 @@
   }
 
   .dark {
-    --background: 224 71% 4%;
+    --background: 224 71% 2%;
     --foreground: 210 40% 98%;
-    --card: 224 71% 7%;
+    --card: 224 71% 4%;
     --primary: 250 84% 64%;
     --primary-foreground: 210 40% 98%;
-    --border: 217 33% 18%;
+    --border: 217 33% 12%;
   }
 
   * {
@@ -125,12 +125,12 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300 antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   section {
-    @apply py-16 md:py-24 relative overflow-hidden;
+    @apply py-20 md:py-32 relative overflow-hidden;
   }
 }
 
@@ -171,6 +171,14 @@
 
 @utility text-gradient {
   @apply bg-clip-text text-transparent bg-linear-to-r from-[#00c4cc] via-[#7d2ae8] to-[#ff66c4];
+  background-size: 200% auto;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 @utility cosmic-button {

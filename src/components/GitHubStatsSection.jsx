@@ -13,7 +13,7 @@ const StatCard = ({ children, delay, animateX }) => (
         viewport={{ once: true }}
         transition={{ delay, duration: 0.6, ease: "easeOut" }}
         whileHover={{ y: -5 }}
-        className="bg-card/40 backdrop-blur-md p-8 rounded-[2rem] border border-border/50 overflow-hidden flex flex-col justify-center items-center h-full min-h-[280px] transition-all duration-500 shadow-xl shadow-primary/5 hover:shadow-primary/10"
+        className="bg-card/40 backdrop-blur-md p-6 md:p-8 rounded-2xl md:rounded-[2rem] border border-border/50 overflow-hidden flex flex-col justify-center items-center h-full min-h-[250px] md:min-h-[280px] transition-all duration-500 shadow-xl shadow-primary/5 hover:shadow-primary/10"
     >
         {children}
     </motion.div>
@@ -30,16 +30,16 @@ const TextFallback = ({ title, stats, icon: MainIcon }) => (
             </div>
             <h4 className="text-xl font-bold text-foreground">{title}</h4>
         </div>
-        <div className="grid grid-cols-2 gap-4 w-full">
+        <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
             {stats.map((stat, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-secondary/20 border border-border/40 text-center relative group overflow-hidden hover:bg-secondary/40 transition-colors">
+                <div key={i} className="p-3 md:p-4 rounded-xl md:rounded-2xl bg-secondary/20 border border-border/40 text-center relative group overflow-hidden hover:bg-secondary/40 transition-colors">
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative z-10 flex flex-col items-center">
-                        <div className="mb-2 text-primary/70 group-hover:text-primary transition-colors">
+                        <div className="mb-1 md:mb-2 text-primary/70 group-hover:text-primary transition-colors scale-90 md:scale-100">
                             {stat.icon || <Star size={14} />}
                         </div>
-                        <p className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground mb-1">{stat.label}</p>
-                        <p className="text-xl font-black text-foreground tabular-nums">{stat.value}</p>
+                        <p className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-muted-foreground mb-1">{stat.label}</p>
+                        <p className="text-lg md:text-xl font-black text-foreground tabular-nums">{stat.value}</p>
                     </div>
                 </div>
             ))}
@@ -212,7 +212,7 @@ export const GitHubStatsSection = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-8 bg-card/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-border/50 overflow-hidden min-h-[220px] transition-all duration-500 flex flex-col items-center justify-center shadow-2xl shadow-primary/5"
+                    className="mt-8 bg-card/40 backdrop-blur-md p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-border/50 overflow-hidden min-h-[180px] md:min-h-[220px] transition-all duration-500 flex flex-col items-center justify-center shadow-2xl shadow-primary/5"
                 >
                     {!imageErrors.streak ? (
                         <div className="relative w-full flex flex-col items-center">
@@ -220,33 +220,33 @@ export const GitHubStatsSection = () => {
                                 src="https://github-readme-streak-stats.herokuapp.com/?user=hanikumar0&theme=transparent&hide_border=true&stroke=8b5cf6&ring=8b5cf6&fire=8b5cf6&currStreakLabel=8b5cf6&sideLabels=94a3b8&dates=94a3b8"
                                 alt="Contribution Streak"
                                 onError={() => handleImageError('streak')}
-                                className="w-full max-w-4xl filter drop-shadow-2xl hover:scale-[1.01] transition-transform duration-500"
+                                className="w-full max-w-4xl filter drop-shadow-2xl hover:scale-[1.01] transition-transform duration-500 scale-95 md:scale-100"
                             />
                         </div>
                     ) : (
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-4xl py-6">
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full max-w-4xl py-4 md:py-6">
                             <div className="text-center md:text-left">
-                                <h3 className="text-3xl font-black text-foreground mb-4">Commitment to Growth</h3>
-                                <p className="text-muted-foreground text-lg max-w-md">
+                                <h3 className="text-2xl md:text-3xl font-black text-foreground mb-3">Commitment to Growth</h3>
+                                <p className="text-muted-foreground text-base md:text-lg max-w-md">
                                     I consistently ship code, resolve issues, and build meaningful projects every single week.
                                 </p>
                             </div>
 
                             {events && (
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-6 rounded-3xl bg-primary/10 border border-primary/20 text-center">
-                                        <div className="flex justify-center mb-2 text-primary">
-                                            <Activity size={24} />
+                                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                    <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-primary/10 border border-primary/20 text-center">
+                                        <div className="flex justify-center mb-1 md:mb-2 text-primary">
+                                            <Activity size={20} md:size={24} />
                                         </div>
-                                        <p className="text-xs font-bold text-muted-foreground uppercase mb-1">Recent Acts</p>
-                                        <p className="text-3xl font-black text-foreground">{events.recentActivity}</p>
+                                        <p className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase mb-1">Recent Acts</p>
+                                        <p className="text-2xl md:text-3xl font-black text-foreground">{events.recentActivity}</p>
                                     </div>
-                                    <div className="p-6 rounded-3xl bg-secondary/30 border border-border/40 text-center">
-                                        <div className="flex justify-center mb-2 text-primary">
-                                            <Calendar size={24} />
+                                    <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-secondary/30 border border-border/40 text-center">
+                                        <div className="flex justify-center mb-1 md:mb-2 text-primary">
+                                            <Calendar size={20} md:size={24} />
                                         </div>
-                                        <p className="text-xs font-bold text-muted-foreground uppercase mb-1">Latest Repo</p>
-                                        <p className="text-sm font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap max-w-[100px]">{events.latestRepo}</p>
+                                        <p className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase mb-1">Latest Repo</p>
+                                        <p className="text-xs md:text-sm font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap max-w-[80px] md:max-w-[100px]">{events.latestRepo}</p>
                                     </div>
                                 </div>
                             )}

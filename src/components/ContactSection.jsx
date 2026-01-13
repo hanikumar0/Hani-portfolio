@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { Magnetic } from "./Magnetic";
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -51,8 +52,7 @@ export const ContactSection = () => {
             Let's <span className="text-primary">Connect</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ready to start a project or just want to say hi? My inbox is always
-            open.
+            Have a vision that needs an expert touch? My inbox is open for high-impact collaborations and technical inquiries.
           </p>
         </motion.div>
 
@@ -90,14 +90,18 @@ export const ContactSection = () => {
             <div>
               <h4 className="text-xl font-bold mb-6">Social Profiles</h4>
               <div className="flex gap-4">
-                <SocialLink
-                  href="https://www.linkedin.com/in/hanikumar06/"
-                  icon={<Linkedin />}
-                />
-                <SocialLink
-                  href="https://github.com/hanikumar0"
-                  icon={<Github />}
-                />
+                <Magnetic>
+                  <SocialLink
+                    href="https://www.linkedin.com/in/hanikumar06/"
+                    icon={<Linkedin />}
+                  />
+                </Magnetic>
+                <Magnetic>
+                  <SocialLink
+                    href="https://github.com/hanikumar0"
+                    icon={<Github />}
+                  />
+                </Magnetic>
               </div>
             </div>
 
@@ -109,9 +113,7 @@ export const ContactSection = () => {
                 <h4 className="font-bold">Open for Collaboration</h4>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                I am currently looking for new opportunities and interesting
-                projects to work on. Feel free to reach out if you have
-                something in mind!
+                I am currently accepting select creative partnerships and engineering roles that challenge the status quo. Let's talk.
               </p>
             </div>
           </motion.div>
@@ -123,8 +125,9 @@ export const ContactSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-7"
           >
-            <div className="bg-card p-8 md:p-10 rounded-3xl border border-border/50 shadow-2xl shadow-primary/5">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="glass-panel p-8 md:p-10 border border-white/20 dark:border-white/10 shadow-2xl shadow-canva-purple/5 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-canva-teal/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-canva-teal/20 transition-colors" />
+              <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold ml-1">Full Name</label>
@@ -214,8 +217,8 @@ const SocialLink = ({ href, icon }) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="p-4 bg-card border border-border rounded-xl hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+    className="flex items-center justify-center w-14 h-14 bg-card border border-border rounded-2xl hover:text-canva-purple hover:border-canva-purple/50 hover:bg-canva-purple/5 transition-all duration-300 shadow-sm hover:shadow-md"
   >
-    {React.cloneElement(icon, { size: 24 })}
+    {React.cloneElement(icon, { size: 28 })}
   </a>
 );

@@ -18,6 +18,23 @@ export const AboutSection = () => {
           <div className="h-1.5 w-20 bg-primary mx-auto rounded-full" />
         </motion.div>
 
+        {/* 3D Decorative Floating Objects */}
+        <motion.div
+          animate={{ y: [0, 20, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="absolute top-20 right-10 hidden lg:block opacity-20 pointer-events-none"
+        >
+          <div className="w-24 h-24 rounded-3xl bg-canva-purple rotate-12 blur-sm" />
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, -20, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 7, repeat: Infinity }}
+          className="absolute bottom-40 left-10 hidden lg:block opacity-20 pointer-events-none"
+        >
+          <div className="w-32 h-32 rounded-full bg-canva-teal -rotate-12 blur-sm" />
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -27,22 +44,16 @@ export const AboutSection = () => {
             className="space-y-6 text-lg"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-              A developer with a passion for{" "}
-              <span className="text-primary">impactful code</span>.
+              A developer focused on building{" "}
+              <span className="text-primary">tools that people actually use</span>.
             </h3>
 
             <p className="text-muted-foreground leading-relaxed">
-              My journey into tech started with a simple curiosity: "How do
-              things work behind the screen?" What began with basic HTML tags
-              has evolved into a career dedicated to building robust, scalable,
-              and high-performance applications.
+              I’m a full-stack developer specializing in the MERN stack and React Native, with a strong focus on system design, performance optimization, and scalability. My work centers on solving real engineering problems—designing AI-driven pipelines for ATS resume optimization, building low-latency real-time systems, and developing fault-tolerant backend services.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              I don't just write code; I craft digital experiences. Whether it's
-              a seamless mobile app or a complex web ecosystem, my focus is
-              always on the end-user. I thrive in environments that challenge my
-              technical limits and push me to learn every single day.
+              I’ve optimized platforms like CoachVerse by reducing end-to-end workflow latency by 50%, and engineered state synchronization mechanisms achieving sub-100ms consistency for shopping cart systems. I enjoy breaking down complex requirements into modular architectures, writing maintainable, testable code, and delivering robust, production-ready applications.
             </p>
 
             <div className="grid grid-cols-2 gap-4 pt-4">
@@ -104,12 +115,12 @@ export const AboutSection = () => {
           </a>
 
           <a
-            href="https://drive.google.com/uc?export=download&id=1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl"
+            href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary/10 transition-all duration-300"
           >
-            Download CV
+            View Full CV
           </a>
         </div>
       </div>

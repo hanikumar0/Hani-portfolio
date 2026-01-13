@@ -83,42 +83,44 @@ export const SkillsSection = () => {
 
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill) => (
               <motion.div
                 key={skill.name}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 group"
+                transition={{ duration: 0.4 }}
+                className="bg-card/50 backdrop-blur-sm p-8 rounded-[2rem] border border-border/50 hover:border-canva-purple/30 transition-all duration-500 hover:shadow-2xl hover:shadow-canva-purple/10 group relative overflow-hidden"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl group-hover:scale-110 transition-transform">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-canva-purple/5 blur-3xl rounded-full -translate-y-12 translate-x-12 group-hover:bg-canva-purple/10 transition-colors" />
+
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-secondary/50 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 shadow-inner">
                     {skill.icon}
-                  </span>
-                  <span className="text-[10px] font-bold text-primary/70 uppercase tracking-widest px-2 py-1 rounded-md bg-primary/5 border border-primary/10">
+                  </div>
+                  <span className="text-[10px] font-black text-canva-purple uppercase tracking-[0.2em] px-3 py-1.5 rounded-full bg-canva-purple/5 border border-canva-purple/10 shadow-sm">
                     {skill.category}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-lg mb-3">{skill.name}</h3>
+                <h3 className="font-black text-xl mb-4 tracking-tight">{skill.name}</h3>
 
-                <div className="space-y-2">
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>Proficiency</span>
-                    <span>{skill.level}%</span>
+                <div className="space-y-3">
+                  <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">
+                    <span>Expertise</span>
+                    <span className="text-canva-purple">{skill.level}%</span>
                   </div>
-                  <div className="w-full bg-secondary h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-secondary/30 h-2 rounded-full overflow-hidden p-0.5 border border-border/50">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className="bg-primary h-full rounded-full"
+                      transition={{ duration: 1.5, ease: "circOut" }}
+                      className="bg-linear-to-r from-canva-teal to-canva-purple h-full rounded-full shadow-[0_0_10px_rgba(125,42,232,0.3)]"
                     />
                   </div>
                 </div>

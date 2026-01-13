@@ -58,7 +58,7 @@ const projects = [
       "Empowered over 1,000 users to secure more interviews by increasing their resume match rate average by 35%.",
     image: "/projects/ats_checker.png",
     tags: ["Node.js", "Gemini API", "React"],
-    demoUrl: "https://ats-checker.vercel.app",
+    demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/ATS-checker",
     featured: true,
   },
@@ -98,7 +98,7 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800",
     tags: ["Firebase", "React", "TailwindCSS"],
-    demoUrl: "https://cartwise-demo.vercel.app",
+    demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/cartwise",
     featured: false,
   },
@@ -230,6 +230,23 @@ export const ProjectsSection = () => {
       <div className="blob w-[300px] h-[300px] bg-canva-pink opacity-10 top-0 left-1/4" />
       <div className="blob w-[400px] h-[400px] bg-canva-teal opacity-5 bottom-0 right-1/4" />
 
+      {/* Floating Canva Elements */}
+      <motion.div
+        animate={{ y: [0, 30, 0], rotate: [0, 15, 0] }}
+        transition={{ duration: 8, repeat: Infinity }}
+        className="absolute top-40 right-20 hidden xl:block opacity-10 pointer-events-none"
+      >
+        <div className="w-20 h-20 border-4 border-canva-yellow rounded-xl rotate-45" />
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -40, 0], rotate: [0, -20, 0] }}
+        transition={{ duration: 10, repeat: Infinity }}
+        className="absolute bottom-60 left-20 hidden xl:block opacity-10 pointer-events-none"
+      >
+        <div className="w-16 h-16 border-4 border-canva-pink rounded-full" />
+      </motion.div>
+
       <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -281,67 +298,79 @@ const ProjectCard = ({ project, index }) => {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
       className={cn(
-        "canva-card flex flex-col h-full",
-        project.featured ? "lg:border-canva-purple/50 bg-canva-purple/5" : ""
+        "bg-card border-2 border-border/50 rounded-[2.5rem] p-8 transition-all duration-500 hover:border-canva-purple/30 hover:shadow-2xl hover:shadow-canva-purple/10 flex flex-col h-full group",
+        project.featured ? "bg-canva-purple/[0.02]" : ""
       )}
     >
-      <div className="relative h-52 md:h-60 rounded-[1.5rem] overflow-hidden mb-6">
+      <div className="relative h-56 md:h-64 rounded-[2rem] overflow-hidden mb-8 shadow-inner border border-border/20">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+
         {project.featured && (
-          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-canva-purple text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-2 shadow-xl">
-            <Trophy size={14} /> MUST SEE
+          <div className="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-md text-canva-purple text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] flex items-center gap-2 shadow-2xl">
+            <Trophy size={14} className="animate-bounce" /> MUST SEE
           </div>
         )}
       </div>
 
       <div className="flex flex-col flex-1">
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-[10px] font-black bg-secondary dark:bg-black/20 text-muted-foreground border border-border/50 rounded-lg uppercase tracking-tight"
+              className="px-4 py-1.5 text-[9px] font-black bg-secondary/80 text-muted-foreground border border-border/50 rounded-full uppercase tracking-widest shadow-sm group-hover:bg-canva-purple/5 group-hover:text-canva-purple transition-colors duration-300"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <h3 className="text-2xl font-black mb-3 text-foreground leading-tight">
+        <h3 className="text-3xl font-black mb-4 text-foreground leading-[1.1] tracking-tight group-hover:text-canva-purple transition-colors duration-300">
           {project.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-6 line-clamp-2 md:line-clamp-3 leading-relaxed">
+        <p className="text-muted-foreground text-sm mb-8 line-clamp-2 md:line-clamp-3 leading-relaxed font-medium opacity-80">
           {project.description}
         </p>
 
-        <div className="mt-auto pt-6 flex items-center justify-between border-t border-border/50">
-          <div className="flex gap-4">
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-black text-canva-teal hover:opacity-80 transition-all uppercase tracking-widest"
-            >
-              <ExternalLink size={16} /> Preview
-            </a>
+        <div className="mt-auto pt-8 flex items-center justify-between border-t border-border/50">
+          <div className="flex gap-6">
+            {project.demoUrl && project.demoUrl !== "#" && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[10px] font-black text-canva-teal hover:scale-110 transition-all uppercase tracking-[0.2em]"
+              >
+                <div className="w-8 h-8 rounded-full bg-canva-teal/10 flex items-center justify-center">
+                  <ExternalLink size={16} />
+                </div>
+                Live
+              </a>
+            )}
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-black text-foreground hover:text-canva-purple transition-all uppercase tracking-widest"
+              className="flex items-center gap-2 text-[10px] font-black text-foreground/80 hover:text-canva-purple hover:scale-110 transition-all uppercase tracking-[0.2em]"
             >
-              <Github size={16} /> Source
+              <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center">
+                <Github size={16} />
+              </div>
+              Code
             </a>
           </div>
-          <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center group-hover:bg-canva-purple group-hover:text-white transition-all">
-            <ArrowRight size={16} />
-          </div>
+          <motion.div
+            whileHover={{ x: 5 }}
+            className="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground group-hover:bg-canva-purple group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-canva-purple/20"
+          >
+            <ArrowRight size={20} />
+          </motion.div>
         </div>
       </div>
     </motion.article>

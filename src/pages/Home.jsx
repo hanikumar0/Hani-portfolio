@@ -1,35 +1,27 @@
-import { Navbar } from "../components/Navbar";
-import { StarBackground } from "../components/StarBackground";
+import { PageLayout } from "../components/PageLayout";
 import { HeroSection } from "../components/HeroSection";
-import { AboutSection } from "../components/AboutSection";
-import { SkillsSection } from "../components/SkillsSection";
+import { Marquee } from "../components/Marquee";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { GitHubStatsSection } from "../components/GitHubStatsSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
-import { ContactSection } from "../components/ContactSection";
-import { Footer } from "../components/Footer";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Background Effects */}
-      <StarBackground />
+    <PageLayout>
+      <HeroSection />
 
-      {/* Navbar */}
-      <Navbar />
-      {/* Main Content */}
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <GitHubStatsSection />
-        <ProjectsSection />
-        <TestimonialsSection />
-        <ContactSection />
-      </main>
+      <Marquee
+        items={["Performance", "Scalability", "System Design", "Sub-100ms", "Fault Tolerant", "Production Ready"]}
+        speed={25}
+      />
 
-      {/* Footer */}
-      <Footer />
-    </div>
+      <ProjectsSection />
+      <GitHubStatsSection />
+
+      <Marquee
+        items={["MERN Stack", "React Native", "Next.js", "TypeScript", "Node.js", "MongoDB"]}
+        speed={30}
+        direction={-1}
+      />
+    </PageLayout>
   );
 };
