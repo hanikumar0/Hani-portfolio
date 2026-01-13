@@ -120,12 +120,20 @@ export const Navbar = () => {
             </button>
 
             <a
+              href="#contact"
+              onClick={playClick}
+              className="px-6 py-3 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-[10px] tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-canva-purple/20"
+            >
+              HIRE ME
+            </a>
+
+            <a
               href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-foreground text-background font-black text-[10px] tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl hover:shadow-foreground/10"
             >
-              RESUME
+              CV
             </a>
           </div>
 
@@ -183,10 +191,22 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: navItems.length * 0.1 }}
+                  href="#contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="mt-6 px-8 py-4 rounded-[2rem] bg-linear-to-r from-canva-purple to-canva-pink text-white text-xl font-black flex items-center justify-center gap-3 shadow-2xl shadow-canva-purple/20"
+                >
+                  <Mail size={24} />
+                  HIRE ME
+                </motion.a>
+
+                <motion.a
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: (navItems.length + 1) * 0.1 }}
                   href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 px-8 py-4 rounded-[2rem] bg-linear-to-r from-canva-teal to-canva-purple text-white text-xl font-black flex items-center justify-center gap-3 shadow-2xl"
+                  className="px-8 py-4 rounded-[2rem] bg-foreground text-background text-xl font-black flex items-center justify-center gap-3 shadow-2xl"
                 >
                   <Download size={24} />
                   RESUME

@@ -15,6 +15,7 @@ const projects = [
   {
     id: 1,
     title: "CoachVerse – Performance Hub",
+    category: "Web Development",
     description:
       "A comprehensive performance management platform for coaches and athletes.",
     problem:
@@ -32,6 +33,7 @@ const projects = [
   {
     id: 15,
     title: "SnapMeasure – Precision Tool",
+    category: "Mobile Apps",
     description:
       "Advanced mobile measurement application for high-accuracy distance and angle calculation.",
     problem:
@@ -49,6 +51,7 @@ const projects = [
   {
     id: 3,
     title: "ATS Checker AI",
+    category: "AI & ML",
     description:
       "AI-powered resume optimization tool built with Google Gemini to improve job-fit scores.",
     problem:
@@ -66,6 +69,7 @@ const projects = [
   {
     id: 16,
     title: "HeartGuard AI",
+    category: "AI & ML",
     description:
       "Full-stack ML application for early detection and prediction of heart disease risks.",
     problem:
@@ -83,6 +87,7 @@ const projects = [
   {
     id: 4,
     title: "DocBook – Health Scheduler",
+    category: "Web Development",
     description:
       "Robust web-based Doctor Appointment System designed to streamline clinic workflows.",
     image:
@@ -95,6 +100,7 @@ const projects = [
   {
     id: 2,
     title: "CartWise – Smart Shop",
+    category: "Web Development",
     description: "Intelligent shopping app that tracks prices and provides AI-powered recommendations.",
     image:
       "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800",
@@ -106,6 +112,7 @@ const projects = [
   {
     id: 18,
     title: "Real-Time Chat App",
+    category: "Web Development",
     description: "Instant messaging platform with live status, secure auth, and media sharing.",
     image: "/projects/chat_app.png",
     tags: ["Node.js", "Socket.io", "MongoDB"],
@@ -116,6 +123,7 @@ const projects = [
   {
     id: 19,
     title: "Medical Data Extraction",
+    category: "AI & ML",
     description: "Automated pipeline for processing and extracting clinical insights from documents.",
     image: "/projects/medical_data.png",
     tags: ["Python", "Jupyter", "NLTK"],
@@ -126,6 +134,7 @@ const projects = [
   {
     id: 20,
     title: "CheckoPrice",
+    category: "Web Development",
     description: "Comprehensive price comparison tool for modern e-commerce platforms.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
@@ -137,6 +146,7 @@ const projects = [
   {
     id: 21,
     title: "AWS Quiz Portal",
+    category: "Web Development",
     description: "Interactive platform for cloud certification exam preparation.",
     image:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
@@ -148,6 +158,7 @@ const projects = [
   {
     id: 22,
     title: "Weather Forecasting",
+    category: "Web Development",
     description: "Data-driven weather application with real-time API integrations.",
     image:
       "https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&q=80&w=800",
@@ -159,9 +170,9 @@ const projects = [
   {
     id: 13,
     title: "Education Platform",
+    category: "Web Development",
     description: "Full-scale e-learning platform with course management and student tracking.",
-    image:
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800",
     tags: ["React", "Express", "Node.js"],
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/online-education-platform",
@@ -170,9 +181,9 @@ const projects = [
   {
     id: 23,
     title: "Flipkart UI Clone",
+    category: "Web Development",
     description: "A high-fidelity responsive clone of the popular e-commerce platform.",
-    image:
-      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800",
     tags: ["HTML", "CSS", "Responsive Design"],
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/flipkart-clone",
@@ -181,9 +192,9 @@ const projects = [
   {
     id: 24,
     title: "Meal Finder",
+    category: "Web Development",
     description: "Discover new recipes and meals with an interactive search engine.",
-    image:
-      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800",
     tags: ["JavaScript", "API Integration", "CSS3"],
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/Meal-finder",
@@ -192,9 +203,9 @@ const projects = [
   {
     id: 25,
     title: "Quiz Wizard",
+    category: "Web Development",
     description: "A fun and interactive quiz application with various categories.",
-    image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800",
     tags: ["JavaScript", "DOM Manipulation", "Game Dev"],
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/Quiz-wizard",
@@ -203,9 +214,9 @@ const projects = [
   {
     id: 26,
     title: "LifeLinkr",
+    category: "Web Development",
     description: "Connecting individuals through a modern networking approach.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800",
     tags: ["HTML", "Community", "Profile System"],
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/lifelinkr",
@@ -214,9 +225,9 @@ const projects = [
   {
     id: 27,
     title: "Connect Fusion AI",
+    category: "AI & ML",
     description: "AI-powered platform to connect ideas and automate workflows.",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
     tags: ["TypeScript", "AI", "Node.js"],
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/connect-fusion-ai",
@@ -224,7 +235,16 @@ const projects = [
   },
 ];
 
+const categories = ["All", "Web Development", "Mobile Apps", "AI & ML"];
+
+
 export const ProjectsSection = () => {
+  const [activeCategory, setActiveCategory] = React.useState("All");
+
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter(p => p.category === activeCategory);
+
   return (
     <section id="projects" className="py-24 px-4 relative overflow-hidden bg-secondary/5">
       {/* Background Blobs */}
@@ -264,13 +284,34 @@ export const ProjectsSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             A curated space where logic meets design. Each project is a step forward in craftsmanship.
           </p>
+
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-3 mt-12">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={cn(
+                  "px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300",
+                  activeCategory === cat
+                    ? "bg-canva-purple text-white shadow-lg shadow-canva-purple/20 scale-105"
+                    : "bg-background/80 text-muted-foreground hover:bg-canva-purple/5 border border-border/50"
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((project, index) => (
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
+          {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

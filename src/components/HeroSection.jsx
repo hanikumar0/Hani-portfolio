@@ -116,13 +116,24 @@ export const HeroSection = () => {
             <div className="flex flex-wrap gap-4 pt-4">
               <Magnetic>
                 <a
+                  href="#contact"
+                  onClick={playClick}
+                  onMouseEnter={playHover}
+                  className="px-8 py-4 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.2em] uppercase shadow-xl shadow-canva-purple/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+                >
+                  <Mail size={20} />
+                  Hire Me
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
                   href="#projects"
                   onClick={playClick}
                   onMouseEnter={playHover}
-                  className="cosmic-button"
+                  className="secondary-button"
                 >
                   <Briefcase size={20} />
-                  View Showcase
+                  Case Studies
                 </a>
               </Magnetic>
               <Magnetic>
@@ -132,13 +143,26 @@ export const HeroSection = () => {
                   rel="noopener noreferrer"
                   onClick={playClick}
                   onMouseEnter={playHover}
-                  className="secondary-button"
+                  className="px-8 py-4 rounded-full border-2 border-border font-black text-[10px] tracking-[0.2em] uppercase hover:bg-secondary transition-all flex items-center gap-2"
                 >
                   <Download size={20} />
-                  View Resume
+                  CV
                 </a>
               </Magnetic>
             </div>
+
+            {/* Core Philosophy Block */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="pt-12 border-t border-border/50 max-w-xl"
+            >
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-canva-teal mb-4">Core Philosophy</h4>
+              <p className="text-xl font-black italic leading-tight text-foreground/70">
+                “I believe in writing code that isn't just functional, but <span className="text-canva-purple">mathematically elegant</span> and deeply intuitive.”
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* Visual 3D Component */}
