@@ -1,9 +1,12 @@
+import React, { Suspense, lazy } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { HeroSection } from "../components/HeroSection";
 import { Marquee } from "../components/Marquee";
-import { ProjectsSection } from "../components/ProjectsSection";
-import { GitHubStatsSection } from "../components/GitHubStatsSection";
-import { PhilosophySection } from "../components/PhilosophySection";
+
+// Optimized code-splitting
+const ProjectsSection = lazy(() => import("../components/ProjectsSection"));
+const GitHubStatsSection = lazy(() => import("../components/GitHubStatsSection"));
+const PhilosophySection = lazy(() => import("../components/PhilosophySection"));
 
 export const Home = () => {
   return (
@@ -15,10 +18,11 @@ export const Home = () => {
         speed={25}
       />
 
-      <PhilosophySection />
-
-      <ProjectsSection />
-      <GitHubStatsSection />
+      <Suspense fallback={<div className="h-96 flex items-center justify-center"><div className="w-10 h-10 border-4 border-canva-purple/20 border-t-canva-purple rounded-full animate-spin" /></div>}>
+        <PhilosophySection />
+        <ProjectsSection />
+        <GitHubStatsSection />
+      </Suspense>
 
       <Marquee
         items={["MERN Stack", "React Native", "Next.js", "TypeScript", "Node.js", "MongoDB"]}

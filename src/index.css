@@ -131,6 +131,8 @@
 
   section {
     @apply py-20 md:py-32 relative overflow-hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 5000px;
   }
 }
 
@@ -196,10 +198,29 @@
 @utility sticker {
   @apply absolute rounded-2xl bg-white shadow-xl p-4 rotate-3 hover:rotate-0 transition-transform duration-300 border border-border/50;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);
+  will-change: transform;
 }
 
 @utility blob {
   @apply absolute rounded-full blur-[100px] opacity-20 pointer-events-none;
+  will-change: transform, opacity;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #7d2ae833;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #7d2ae866;
 }
 
 
