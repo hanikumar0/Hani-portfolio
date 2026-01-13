@@ -131,7 +131,7 @@ export const GitHubStatsSection = () => {
                         <Github size={16} />
                         <span>OPEN SOURCE METRICS</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter">
+                    <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter">
                         Platform <span className="text-gradient">Activity</span>
                     </h2>
                     <p className="mt-4 text-muted-foreground max-w-xl mx-auto text-lg">

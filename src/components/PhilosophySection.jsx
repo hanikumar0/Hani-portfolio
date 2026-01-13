@@ -16,7 +16,7 @@ export const PhilosophySection = () => {
                     <span className="inline-block px-4 py-1.5 rounded-full bg-canva-teal/10 text-canva-teal text-[10px] font-black uppercase tracking-[0.3em] mb-4 border border-canva-teal/20">
                         MY MANIFESTO
                     </span>
-                    <h2 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-[0.85]">
+                    <h2 className="text-4xl md:text-8xl font-black mb-6 tracking-tighter leading-[0.85]">
                         Engineered <br />
                         <span className="text-gradient">With Purpose</span>
                     </h2>
@@ -50,7 +50,7 @@ export const PhilosophySection = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="mt-24 p-12 md:p-20 rounded-[4rem] bg-linear-to-br from-canva-purple/5 via-canva-teal/5 to-canva-pink/5 border-2 border-border/50 relative overflow-hidden text-center"
+                    className="mt-20 md:mt-24 p-8 md:p-20 rounded-[2.5rem] md:rounded-[4rem] bg-linear-to-br from-canva-purple/5 via-canva-teal/5 to-canva-pink/5 border-2 border-border/50 relative overflow-hidden text-center"
                 >
                     <div className="absolute top-0 left-0 w-full h-full bg-grid-white/[0.02] -z-10" />
                     <Sparkles className="mx-auto mb-8 text-canva-purple animate-pulse" size={48} />
@@ -70,7 +70,7 @@ export const PhilosophySection = () => {
 
 const PhilosophyCard = ({ icon, title, description, color }) => (
     <Tilt>
-        <div className={`p-10 rounded-[3rem] bg-card border-2 border-border/50 hover:border-${color}/30 transition-all duration-500 group h-full flex flex-col`}>
+        <div className={`p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] bg-card border-2 border-border/50 hover:border-${color}/30 transition-all duration-500 group h-full flex flex-col`}>
             <div className={`w-20 h-20 rounded-3xl bg-${color}/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}>
                 {icon}
             </div>

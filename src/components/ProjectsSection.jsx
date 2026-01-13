@@ -444,9 +444,9 @@ export const ProjectsSection = () => {
 
               {/* Right Side: Content */}
               <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto custom-scrollbar">
-                <div className="mb-8">
+                <div className="mb-6 md:mb-8">
                   <span className="text-[10px] font-black uppercase tracking-[0.3em] text-canva-purple mb-4 block">CASE STUDY</span>
-                  <h3 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter leading-none">
+                  <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter leading-none">
                     {selectedProject.title}
                   </h3>
                   <div className="flex flex-wrap gap-2 mt-4">
@@ -497,7 +497,7 @@ const CaseStudySection = ({ icon, title, content }) => (
       </div>
       <h4 className="text-sm font-black uppercase tracking-widest text-foreground">{title}</h4>
     </div>
-    <p className="text-muted-foreground leading-relaxed pl-12">
+    <p className="text-muted-foreground leading-relaxed pl-10 md:pl-12 text-sm md:text-base">
       {content}
     </p>
   </div>
