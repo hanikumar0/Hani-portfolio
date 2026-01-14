@@ -7,7 +7,7 @@ import { Marquee } from "../components/Marquee";
 const ProjectsSection = lazy(() => import("../components/ProjectsSection").then(m => ({ default: m.ProjectsSection })));
 const GitHubStatsSection = lazy(() => import("../components/GitHubStatsSection").then(m => ({ default: m.GitHubStatsSection })));
 const PhilosophySection = lazy(() => import("../components/PhilosophySection").then(m => ({ default: m.PhilosophySection })));
-const BlogSection = lazy(() => import("../components/BlogSection").then(m => ({ default: m.BlogSection })));
+
 
 export const Home = () => {
   return (
@@ -21,7 +21,6 @@ export const Home = () => {
 
       <Suspense fallback={<div className="py-20 flex items-center justify-center"><div className="w-10 h-10 border-4 border-canva-purple/20 border-t-canva-purple rounded-full animate-spin" /></div>}>
         <PhilosophySection />
-        <BlogSection />
         <ProjectsSection />
         <GitHubStatsSection />
       </Suspense>

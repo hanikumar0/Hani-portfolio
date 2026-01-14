@@ -416,6 +416,9 @@ export const ProjectsSection = () => {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
+                  width={800}
+                  height={600}
+                  loading="eager"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10">
@@ -523,9 +526,11 @@ const ProjectCard = ({ project, index, onViewCase }) => {
             <img
               src={project.image}
               alt={project.title}
-              loading={index < 3 ? "eager" : "lazy"}
+              width={800}
+              height={600}
+              loading="eager"
               decoding="async"
-              fetchPriority={index < 3 ? "high" : "auto"}
+              fetchPriority={index < 6 ? "high" : "auto"}
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />

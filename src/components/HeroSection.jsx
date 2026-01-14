@@ -2,10 +2,11 @@ import { ArrowDown, Mail, Briefcase, Download, Github, Linkedin, Code, Rocket } 
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
 import { Suspense, lazy } from "react";
+import { Link } from "react-router-dom";
 import { Magnetic } from "./Magnetic";
 import { useSound } from "../hooks/use-sound";
 
-const Desk3D = lazy(() => import("./Desk3D").then(module => ({ default: module.Desk3D })));
+import { Desk3D } from "./Desk3D";
 
 export const HeroSection = () => {
   const { play: playClick } = useSound("/sounds/click.mp3", 0.3);
@@ -25,6 +26,7 @@ export const HeroSection = () => {
       <motion.div
         drag
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        style={{ touchAction: "none" }}
         onDragStart={playPop}
         className="sticker hidden lg:block top-40 left-20 z-20 cursor-grab active:cursor-grabbing"
         initial={{ y: 0, rotate: -5 }}
@@ -40,7 +42,10 @@ export const HeroSection = () => {
       <motion.div
         drag
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-        className="sticker hidden lg:block bottom-40 left-1/4 z-20 cursor-grab active:cursor-grabbing bg-canva-pink/10"
+        style={{ touchAction: "none" }}
+        className="sticker hidden lg:block bottom-40 left-1/4 z-20 cursor-grab active:cursor-grabbing bg-canva-pink/10 hover:scale-110"
+        whileHover={{ scale: 1.1 }}
+        onClick={() => window.location.href = '/contact'}
         initial={{ rotate: 12 }}
         animate={{ rotate: [12, 5, 12], y: [0, 15, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -54,6 +59,7 @@ export const HeroSection = () => {
       <motion.div
         drag
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        style={{ touchAction: "none" }}
         className="sticker hidden lg:block bottom-40 right-20 z-20 cursor-grab active:cursor-grabbing bg-canva-yellow/10"
         initial={{ rotate: -5 }}
         animate={{ rotate: [-5, 5, -5] }}
@@ -68,6 +74,7 @@ export const HeroSection = () => {
       <motion.div
         drag
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        style={{ touchAction: "none" }}
         className="sticker hidden lg:block top-20 right-10 z-20 cursor-grab active:cursor-grabbing bg-canva-purple/10 border-canva-purple/20"
         initial={{ x: 0 }}
         animate={{ x: [0, 10, 0], rotate: [0, 5, 0] }}
@@ -118,15 +125,15 @@ export const HeroSection = () => {
 
             <div className="flex flex-wrap gap-4 pt-4">
               <Magnetic>
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   onClick={playClick}
                   onMouseEnter={playHover}
                   className="px-8 py-4 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.2em] uppercase shadow-xl shadow-canva-purple/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
                 >
                   <Mail size={20} />
                   Hire Me
-                </a>
+                </Link>
               </Magnetic>
               <Magnetic>
                 <a
@@ -179,9 +186,7 @@ export const HeroSection = () => {
               <div className="absolute -inset-4 bg-linear-to-r from-canva-teal via-canva-purple to-canva-pink rounded-[4.5rem] blur-3xl opacity-10 group-hover:opacity-30 transition-opacity duration-700" />
 
               <div className="aspect-[4/5] rounded-[3.5rem] overflow-hidden bg-black/20 relative">
-                <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-canva-purple font-black animate-pulse">LOADING VIRTUAL SPACE...</div>}>
-                  <Desk3D />
-                </Suspense>
+                <Desk3D />
 
                 {/* Floating HUD Elements */}
                 <motion.div

@@ -19,6 +19,18 @@ export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -30,7 +42,7 @@ export const ContactSection = () => {
         description: "Thank you for reaching out. I'll get back to you within 24 hours.",
       });
       setIsSubmitting(false);
-      e.target.reset();
+      setFormData({ name: "", email: "", subject: "", message: "" });
     }, 2000);
   };
 
@@ -40,8 +52,8 @@ export const ContactSection = () => {
       className="py-32 px-4 relative overflow-hidden bg-background"
     >
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-canva-purple/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-canva-teal/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-canva-purple/5 blur-[120px] rounded-full pointer-events-none z-0" style={{ zIndex: -1 }} />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-canva-teal/5 blur-[120px] rounded-full pointer-events-none z-0" style={{ zIndex: -1 }} />
 
       <div className="container mx-auto max-w-7xl relative z-10">
         <motion.div
@@ -135,71 +147,81 @@ export const ContactSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-7"
           >
-            <Tilt className="h-full">
-              <div className="bg-card border-2 border-border/50 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-canva-teal/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-canva-teal/10 transition-colors" />
+            <div className="bg-card border-2 border-border/50 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-canva-teal/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-canva-teal/10 transition-colors" />
 
-                <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-3">
-                      <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">FULL NAME</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Hani Kumar"
-                        className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all placeholder:text-muted-foreground/30 font-bold"
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">EMAIL ADDRESS</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="hello@example.com"
-                        className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all placeholder:text-muted-foreground/30 font-bold"
-                      />
-                    </div>
-                  </div>
-
+              <form onSubmit={handleSubmit} className="relative z-[50] space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">SUBJECT</label>
+                    <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">FULL NAME</label>
                     <input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       type="text"
                       required
-                      placeholder="How can I help you?"
+                      placeholder="Hani Kumar"
                       className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all placeholder:text-muted-foreground/30 font-bold"
                     />
                   </div>
-
                   <div className="space-y-3">
-                    <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">YOUR MESSAGE</label>
-                    <textarea
+                    <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">EMAIL ADDRESS</label>
+                    <input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      type="email"
                       required
-                      rows={4}
-                      placeholder="Tell me about your amazing project..."
-                      className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all resize-none placeholder:text-muted-foreground/30 font-bold"
+                      placeholder="hello@example.com"
+                      className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all placeholder:text-muted-foreground/30 font-bold"
                     />
                   </div>
+                </div>
 
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-6 rounded-3xl bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.3em] uppercase shadow-xl shadow-canva-purple/20 flex items-center justify-center gap-4 group disabled:opacity-70"
-                  >
-                    {isSubmitting ? (
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        SEND MESSAGE
-                        <Send size={18} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
-                      </>
-                    )}
-                  </motion.button>
-                </form>
-              </div>
-            </Tilt>
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">SUBJECT</label>
+                  <input
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    type="text"
+                    required
+                    placeholder="How can I help you?"
+                    className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all placeholder:text-muted-foreground/30 font-bold"
+                  />
+                </div>
+
+                <div className="space-y-3">
+                  <label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground ml-1">YOUR MESSAGE</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    placeholder="Tell me about your amazing project..."
+                    className="w-full px-6 py-4 rounded-2xl border-2 border-border/50 bg-secondary/20 focus:outline-none focus:border-canva-purple/50 focus:bg-background transition-all resize-none placeholder:text-muted-foreground/30 font-bold"
+                  />
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-6 rounded-3xl bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.3em] uppercase shadow-xl shadow-canva-purple/20 flex items-center justify-center gap-4 group disabled:opacity-70"
+                >
+                  {isSubmitting ? (
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      SEND MESSAGE
+                      <Send size={18} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>

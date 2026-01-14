@@ -131,8 +131,6 @@
 
   section {
     @apply py-20 md:py-32 relative overflow-hidden;
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 5000px;
   }
 }
 
