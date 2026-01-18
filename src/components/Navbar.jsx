@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Menu, X, Sun, Moon, Download } from "lucide-react";
+import { Menu, X, Sun, Moon, Download, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Magnetic } from "./Magnetic";
