@@ -129,7 +129,7 @@ export const Navbar = () => {
             </a>
 
             <a
-              href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
+              href="https://drive.google.com/file/d/15EnYTeJd5volCMP0l_zDt8Isf-KjqdHy/view?usp=drivesdk"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-foreground text-background font-black text-[10px] tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl hover:shadow-foreground/10"
@@ -204,7 +204,7 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: (navItems.length + 1) * 0.1 }}
-                  href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
+                  href="https://drive.google.com/file/d/15EnYTeJd5volCMP0l_zDt8Isf-KjqdHy/view?usp=drivesdk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 rounded-[2rem] bg-foreground text-background text-xl font-black flex items-center justify-center gap-3 shadow-2xl"

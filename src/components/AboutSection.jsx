@@ -134,7 +134,7 @@ export const AboutSection = () => {
 
         <div className="mt-20 flex flex-col sm:flex-row gap-6 justify-center">
           <a
-            href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
+            href="https://drive.google.com/file/d/15EnYTeJd5volCMP0l_zDt8Isf-KjqdHy/view?usp=drivesdk"
             target="_blank"
             rel="noopener noreferrer"
             className="px-12 py-5 rounded-full bg-foreground text-background font-black text-[10px] tracking-[0.3em] uppercase hover:scale-105 active:scale-95 transition-all shadow-2xl hover:shadow-foreground/20"

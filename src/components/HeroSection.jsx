@@ -148,7 +148,7 @@ export const HeroSection = () => {
               </Magnetic>
               <Magnetic>
                 <a
-                  href="https://drive.google.com/file/d/1_6D_afRccaa3q3GhI1DBnnXX4JIbDoIl/view?usp=sharing"
+                  href="https://drive.google.com/file/d/15EnYTeJd5volCMP0l_zDt8Isf-KjqdHy/view?usp=drivesdk"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={playClick}
