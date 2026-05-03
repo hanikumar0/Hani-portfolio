@@ -18,7 +18,22 @@ import { Tilt } from "./Tilt";
 
 const projects = [
   {
+    id: 38,
+    title: "Synergy – SaaS Task Orchestrator",
+    category: "Full Stack Development",
+    description: "A high-performance, role-based SaaS platform for modern team collaboration and project oversight. Built with the MERN stack for scalability and precision.",
+    problem: "Engineering teams often struggle with fragmented task management, lack of clear role-based access, and opaque project oversight in fast-paced environments.",
+    solution: "Engineered a production-grade SaaS platform featuring robust RBAC, real-time analytics with Recharts, and a centralized hub for project orchestration.",
+    outcome: "Streamlined team workflows with secure data isolation, provided actionable insights through advanced data visualization, and established a transparent audit trail.",
+    image: "/projects/synergy.png",
+    tags: ["Next.js", "MongoDB", "Node.js", "RBAC", "TailwindCSS"],
+    demoUrl: "https://team-task-manager-kappa.vercel.app/",
+    githubUrl: "#",
+    featured: true,
+  },
+  {
     id: 28,
+
     title: "Mannat Microconcrete – Architectural Hub",
     category: "Freelance Project",
     description: "A premium digital ecosystem for India's leading seamless surface provider, featuring interactive finish visualizers and AI design tools.",
@@ -419,16 +434,25 @@ const projects = [
   },
 ];
 
-const categories = ["All", "Web Development", "Mobile Apps", "AI & ML", "Data Analytics"];
+const categories = ["All", "Live & Hosted", "Web Development", "Mobile Apps", "AI & ML", "Data Analytics"];
+
 
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
 
+  const liveProjects = projects.filter(
+    (p) => p.demoUrl && p.demoUrl !== "#"
+  );
+
   const filteredProjects =
     activeCategory === "All"
       ? projects
+      : activeCategory === "Live & Hosted"
+      ? projects.filter((p) => p.demoUrl && p.demoUrl !== "#")
       : projects.filter((p) => p.category === activeCategory);
+
+
 
   return (
     <section
@@ -474,7 +498,27 @@ export const ProjectsSection = () => {
             forward in craftsmanship.
           </p>
 
+          {/* Live Hosted Projects Section */}
+          <div className="mt-16 mb-24">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-canva-teal/10 text-canva-teal text-[10px] font-black uppercase tracking-widest mb-8 border border-canva-teal/20">
+              <Zap size={14} className="animate-pulse" /> Live Hosted Projects
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {liveProjects.map((project, index) => (
+                <ProjectCard
+                  key={`live-${project.id}`}
+                  project={project}
+                  index={index}
+                  onViewCase={() => setSelectedProject(project)}
+                  isLiveSection={true}
+                />
+              ))}
+            </div>
+            <div className="h-px w-full bg-linear-to-r from-transparent via-border/50 to-transparent mt-20" />
+          </div>
+
           {/* Category Tabs */}
+
           <div className="flex flex-wrap justify-center gap-3 mt-12">
             {categories.map((cat) => (
               <button
@@ -646,7 +690,7 @@ const CaseStudySection = ({ icon, title, content }) => (
   </div>
 );
 
-const ProjectCard = ({ project, index, onViewCase }) => {
+const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -659,7 +703,8 @@ const ProjectCard = ({ project, index, onViewCase }) => {
         <div
           className={cn(
             "bg-card border-2 border-border/50 rounded-[2.5rem] p-8 transition-all duration-500 hover:border-canva-purple/30 hover:shadow-2xl hover:shadow-canva-purple/10 flex flex-col h-full group",
-            project.featured ? "bg-canva-purple/[0.02]" : ""
+            project.featured ? "bg-canva-purple/[0.02]" : "",
+            isLiveSection ? "border-canva-teal/20 bg-canva-teal/[0.01]" : ""
           )}
         >
           <div className="relative h-56 md:h-64 rounded-[2rem] overflow-hidden mb-8 shadow-inner border border-border/20">
@@ -675,11 +720,18 @@ const ProjectCard = ({ project, index, onViewCase }) => {
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
-            {project.featured && (
+            {project.featured && !isLiveSection && (
               <div className="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-md text-canva-purple text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] flex items-center gap-2 shadow-2xl">
                 <Trophy size={14} className="animate-bounce" /> MUST SEE
               </div>
             )}
+
+            {isLiveSection && (
+              <div className="absolute top-4 left-4 bg-canva-teal text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] flex items-center gap-2 shadow-2xl animate-pulse-subtle">
+                <div className="w-2 h-2 rounded-full bg-white animate-ping" /> LIVE NOW
+              </div>
+            )}
+
 
             <button
               onClick={onViewCase}
