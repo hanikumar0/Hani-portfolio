@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Toaster />
-      <BrowserRouter basename="/Hani-portfolio">
+      <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
