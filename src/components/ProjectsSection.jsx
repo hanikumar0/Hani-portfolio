@@ -20,6 +20,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Tilt } from "./Tilt";
 import { Magnetic } from "./Magnetic";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 
 const projects = [
@@ -561,16 +564,26 @@ export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const liveProjects = projects.filter(
-    (p) => p.demoUrl && p.demoUrl !== "#"
-  );
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { projectId } = useParams();
 
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : activeCategory === "Live & Hosted"
-      ? projects.filter((p) => p.demoUrl && p.demoUrl !== "#")
-      : projects.filter((p) => p.category === activeCategory);
+  useEffect(() => {
+    if (projectId) {
+      const project = projects.find(p => p.id.toString() === projectId);
+      if (project) setSelectedProject(project);
+    }
+  }, [projectId]);
+
+  const handleOpenProject = (project) => {
+    setSelectedProject(project);
+    window.history.pushState(null, "", `/projects/${project.id}`);
+  };
+
+  const handleCloseProject = () => {
+    setSelectedProject(null);
+    window.history.pushState(null, "", "/projects");
+  };
 
 
 
@@ -629,7 +642,8 @@ export const ProjectsSection = () => {
                   key={`live-${project.id}`}
                   project={project}
                   index={index}
-                  onViewCase={() => setSelectedProject(project)}
+                  onViewCase={() => handleOpenProject(project)}
+
                   isLiveSection={true}
                 />
               ))}
@@ -666,7 +680,7 @@ export const ProjectsSection = () => {
               key={project.id}
               project={project}
               index={index}
-              onViewCase={() => setSelectedProject(project)}
+              onViewCase={() => handleOpenProject(project)}
             />
           ))}
         </motion.div>
@@ -699,9 +713,10 @@ export const ProjectsSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
+              onClick={handleCloseProject}
               className="absolute inset-0 bg-black/80 backdrop-blur-xl"
             />
+
             <motion.div
               layoutId={`card-${selectedProject.id}`}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -710,12 +725,13 @@ export const ProjectsSection = () => {
               className="relative w-full max-w-5xl max-h-[90vh] bg-card border border-border/50 rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row"
             >
               <button
-                onClick={() => setSelectedProject(null)}
+                onClick={handleCloseProject}
                 className="absolute top-6 right-6 z-50 p-3 rounded-full bg-black/20 text-white hover:bg-black/40 transition-colors"
                 aria-label="Close modal"
               >
                 <X size={24} />
               </button>
+
 
               {/* Left Side: Visuals */}
               <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden">
@@ -785,7 +801,10 @@ export const ProjectsSection = () => {
                   />
 
                   <TechnicalBreakdown breakdown={selectedProject.technicalBreakdown} />
+                  
+                  <GitHubREADME githubUrl={selectedProject.githubUrl} />
                 </div>
+
 
 
                 <div className="mt-12 pt-8 border-t border-border/50 flex items-center gap-4 text-muted-foreground italic text-sm">
@@ -925,8 +944,93 @@ const TechnicalBreakdown = ({ breakdown }) => {
 };
 
 
+const GitHubREADME = ({ githubUrl }) => {
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!githubUrl || githubUrl === "#") {
+      setLoading(false);
+      return;
+    }
+
+    const fetchREADME = async () => {
+      try {
+        setLoading(true);
+        // Convert GitHub URL to raw content URL
+        const rawUrl = githubUrl
+          .replace("github.com", "raw.githubusercontent.com")
+          .replace(/\/$/, "") + "/main/README.md";
+        
+        let response = await fetch(rawUrl);
+        
+        // Try master if main fails
+        if (!response.ok) {
+          const masterUrl = rawUrl.replace("/main/", "/master/");
+          response = await fetch(masterUrl);
+        }
+
+        if (!response.ok) throw new Error("README not found");
+
+        const text = await response.text();
+        setContent(text);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchREADME();
+  }, [githubUrl]);
+
+  if (loading) return (
+    <div className="space-y-4 animate-pulse">
+      <div className="h-4 bg-secondary rounded-full w-3/4" />
+      <div className="h-4 bg-secondary rounded-full w-1/2" />
+      <div className="h-4 bg-secondary rounded-full w-5/6" />
+    </div>
+  );
+
+  if (error || !content) return null;
+
+  return (
+    <div className="prose prose-invert prose-sm max-w-none mt-8 border-t border-border/50 pt-8">
+      <h4 className="text-[10px] font-black text-canva-teal uppercase tracking-[0.2em] mb-6">Repository Documentation</h4>
+      <ReactMarkdown 
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h1: ({node, ...props}) => <h1 className="text-2xl font-black mb-4 mt-8" {...props} />,
+          h2: ({node, ...props}) => <h2 className="text-xl font-bold mb-3 mt-6 text-foreground/90 border-b border-border/30 pb-2" {...props} />,
+          h3: ({node, ...props}) => <h3 className="text-lg font-bold mb-2 mt-4 text-foreground/80" {...props} />,
+          p: ({node, ...props}) => <p className="text-muted-foreground leading-relaxed mb-4 text-sm" {...props} />,
+          ul: ({node, ...props}) => <ul className="list-disc pl-6 space-y-2 mb-4 text-sm text-muted-foreground" {...props} />,
+          li: ({node, ...props}) => <li className="marker:text-canva-purple" {...props} />,
+          code: ({node, inline, ...props}) => (
+            inline 
+              ? <code className="bg-secondary/50 px-1.5 py-0.5 rounded text-canva-pink text-[11px]" {...props} />
+              : <pre className="bg-[#0d0d0d] p-4 rounded-xl border border-white/5 overflow-x-auto my-4"><code className="text-blue-300 text-[11px] font-mono" {...props} /></pre>
+          ),
+          table: ({node, ...props}) => (
+            <div className="overflow-x-auto my-6 border border-border/50 rounded-xl">
+              <table className="w-full text-left text-xs" {...props} />
+            </div>
+          ),
+          th: ({node, ...props}) => <th className="bg-secondary/30 p-3 font-bold uppercase tracking-wider" {...props} />,
+          td: ({node, ...props}) => <td className="p-3 border-t border-border/30" {...props} />,
+          img: ({node, ...props}) => <img className="rounded-2xl border border-border/50 my-8 shadow-2xl" {...props} />,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+};
+
 const StatusIndicator = ({ url }) => {
   const [status, setStatus] = useState("checking");
+
 
   useEffect(() => {
     if (!url || url === "#") return;
@@ -985,11 +1089,13 @@ const StatusIndicator = ({ url }) => {
 const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
   return (
     <motion.article
+      layoutId={`card-${project.id}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="h-full"
+      className="h-full cursor-pointer"
+      onClick={onViewCase}
     >
       <Tilt className="h-full">
         <div
@@ -1032,20 +1138,20 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
             )}
 
             {isLiveSection && (
-              <div className="absolute top-4 left-4 bg-canva-teal text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] flex items-center gap-2 shadow-2xl animate-pulse-subtle">
-                <div className="w-2 h-2 rounded-full bg-white animate-ping" /> LIVE NOW
+              <div className="absolute top-4 left-4 bg-canva-teal text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] flex items-center gap-2 shadow-xl">
+                <div className="w-2 h-2 rounded-full bg-white/80" /> LIVE
               </div>
             )}
 
 
-            <button
-              onClick={onViewCase}
-              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20"
+
+            <div
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none"
             >
               <div className="px-6 py-3 rounded-full bg-white text-black font-black text-[10px] tracking-widest uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform">
                 View Case Study
               </div>
-            </button>
+            </div>
           </div>
 
           <div className="flex flex-col flex-1">
@@ -1060,10 +1166,8 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
                   </span>
                 ))}
               </div>
-              {project.demoUrl && project.demoUrl !== "#" && (
-                <StatusIndicator url={project.demoUrl} />
-              )}
             </div>
+
 
 
             <h3 className="text-3xl font-black mb-4 text-foreground leading-[1.1] tracking-tight group-hover:text-canva-purple transition-colors duration-300">
@@ -1095,6 +1199,7 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                     className="flex items-center gap-2 text-[10px] font-black text-foreground/80 hover:text-canva-purple hover:scale-110 transition-all uppercase tracking-[0.2em]"
                   >
                     <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center">
@@ -1115,6 +1220,7 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
                   }
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   className={cn(
                     "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm",
                     project.demoUrl !== "#" || project.githubUrl !== "#"
@@ -1128,11 +1234,6 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
                       ? "View Source Code"
                       : "Link not available"
                   }
-                  onClick={(e) => {
-                    if (project.demoUrl === "#" && project.githubUrl === "#") {
-                      e.preventDefault();
-                    }
-                  }}
                 >
                   <ArrowRight size={20} />
                 </a>
