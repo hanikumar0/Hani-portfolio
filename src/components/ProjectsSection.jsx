@@ -4,6 +4,10 @@ import {
   Github,
   AlertCircle,
   CheckCircle2,
+  ChevronRight,
+  ChevronDown,
+  Terminal,
+  Activity,
   Trophy,
   ArrowRight,
   X,
@@ -15,6 +19,8 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Tilt } from "./Tilt";
+import { Magnetic } from "./Magnetic";
+
 
 const projects = [
   {
@@ -30,7 +36,30 @@ const projects = [
     demoUrl: "https://team-task-manager-kappa.vercel.app/",
     githubUrl: "#",
     featured: true,
+    badges: ["Production Ready", "Vercel Full-Stack"],
+    technicalBreakdown: {
+      architecture: "Full-stack SaaS using Next.js for high-performance frontend and Express.js for scalable backend. MongoDB manages relational-like data through Mongoose, secured with JWT session management.",
+      highlights: [
+        "Granular Role-Based Access Control (RBAC) across all layers",
+        "Optimized data fetching with custom hooks and caching",
+        "Real-time team analytics with interactive data visualizations",
+        "Comprehensive activity audit trails for project oversight"
+      ],
+      snippet: `// RBAC Middleware Logic
+const checkRole = (roles) => (req, res, next) => {
+  const { user } = req;
+  if (!user || !roles.includes(user.role)) {
+    return res.status(403).json({ 
+      error: "Insufficient permissions" 
+    });
+  }
+  next();
+};`,
+      diagram: ["Client Request", "JWT Auth", "Role Validator", "Controller", "DB Operation"]
+    }
   },
+
+
   {
     id: 28,
 
@@ -45,7 +74,30 @@ const projects = [
     demoUrl: "https://www.mannatmicroconcrete.site/",
     githubUrl: "#",
     featured: true,
+    badges: ["High Fidelity"],
+    technicalBreakdown: {
+      architecture: "Static-site generated (SSG) frontend for near-instant load times, integrated with a headless CMS for content management and Cloudinary for asset optimization.",
+      highlights: [
+        "Advanced CSS/Tailwind animations for premium UX",
+        "Image optimization pipeline for high-res catalog",
+        "SEO-first structure with schema markup",
+        "Mobile-responsive adaptive layout system"
+      ],
+      snippet: `// Image Optimization Strategy
+const OptimizedImage = ({ src, alt }) => (
+  <Image
+    src={src}
+    alt={alt}
+    loading="lazy"
+    placeholder="blur"
+    sizes="(max-width: 768px) 100vw, 50vw"
+  />
+);`,
+      diagram: ["User Visit", "Edge Cache", "Next.js SSG", "Headless CMS", "Render"]
+    }
   },
+
+
   {
     id: 30,
     title: "Startup Connect – Entrepreneur Network",
@@ -59,7 +111,23 @@ const projects = [
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/Startup-connect",
     featured: true,
+    technicalBreakdown: {
+      architecture: "Monolithic React architecture with a centralized state management system for entrepreneur profiles and networking logic.",
+      highlights: [
+        "Dynamic networking algorithm for profile matching",
+        "Responsive grid-based UI for cross-device compatibility",
+        "Localized data storage for session persistence"
+      ],
+      snippet: `// Networking Match Logic
+const getMatches = (user, pool) => {
+  return pool.filter(p => 
+    p.interests.some(i => user.needs.includes(i))
+  );
+};`,
+      diagram: ["User Input", "Matching Engine", "Profile Ranker", "UI Update"]
+    }
   },
+
   {
     id: 31,
     title: "ProjectX – Scalable Task Manager",
@@ -73,7 +141,23 @@ const projects = [
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/TaskManager",
     featured: false,
+    technicalBreakdown: {
+      architecture: "Real-time task management system using WebSockets for state synchronization and a Kanban-based frontend architecture.",
+      highlights: [
+        "Optimistic UI updates for zero-latency feel",
+        "WebSocket-driven multi-user synchronization",
+        "Custom drag-and-drop implementation"
+      ],
+      snippet: `// Socket Sync Logic
+socket.on("task_update", (updatedTask) => {
+  setTasks(prev => prev.map(t => 
+    t.id === updatedTask.id ? updatedTask : t
+  ));
+});`,
+      diagram: ["Action", "Socket Event", "Server Sync", "Broadcast", "UI Sync"]
+    }
   },
+
   {
     id: 33,
     title: "EcoRecruiter – HR Automation Tool",
@@ -87,7 +171,21 @@ const projects = [
     demoUrl: "#",
     githubUrl: "https://github.com/hanikumar0/Automated-Recruiter",
     featured: false,
+    technicalBreakdown: {
+      architecture: "Python-driven automation pipeline using Pandas for data extraction and a custom scoring algorithm for candidate ranking.",
+      highlights: [
+        "Automated PDF parsing and data normalization",
+        "Weighted scorecards for objective evaluation",
+        "CSV-based batch processing for large datasets"
+      ],
+      snippet: `# Candidate Scoring Logic
+def calculate_score(skills, requirements):
+    score = sum(1 for s in skills if s in requirements)
+    return (score / len(requirements)) * 100`,
+      diagram: ["CV Batch", "Parser", "Scorer", "Ranked Export"]
+    }
   },
+
   {
     id: 34,
     title: "SpendWise – Finance Tracker",
@@ -189,7 +287,29 @@ const projects = [
     demoUrl: "https://coach-verse-eta.vercel.app/",
     githubUrl: "https://github.com/hanikumar0/CoachVerse",
     featured: true,
+    badges: ["Scalable Architecture"],
+    technicalBreakdown: {
+      architecture: "Micro-SaaS architecture focused on coach-client management. Built with React and Firebase for real-time synchronization and serverless scalability.",
+      highlights: [
+        "Real-time bidirectional messaging system",
+        "Secure document vault with encrypted storage",
+        "Automated scheduling and calendar integration",
+        "Subscription-based access control with Stripe"
+      ],
+      snippet: `// Real-time Sync Hook
+const useSyncData = (path) => {
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, path), (d) => {
+      setData(d.data());
+    });
+    return unsub;
+  }, [path]);
+};`,
+      diagram: ["Coach Action", "Firebase RTDB", "Cloud Functions", "Client Update"]
+    }
   },
+
+
   {
     id: 15,
     title: "SnapMeasure – Precision Tool",
@@ -557,15 +677,17 @@ export const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-center mt-20"
         >
-          <a
-            href="https://github.com/hanikumar0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="secondary-button inline-flex group"
-          >
-            Explore Full Catalog
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          <Magnetic>
+            <a
+              href="https://github.com/hanikumar0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="secondary-button inline-flex group"
+            >
+              Explore Full Catalog
+              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </Magnetic>
         </motion.div>
       </div>
 
@@ -661,7 +783,10 @@ export const ProjectsSection = () => {
                     title="The Impact"
                     content={selectedProject.outcome}
                   />
+
+                  <TechnicalBreakdown breakdown={selectedProject.technicalBreakdown} />
                 </div>
+
 
                 <div className="mt-12 pt-8 border-t border-border/50 flex items-center gap-4 text-muted-foreground italic text-sm">
                   <Zap size={16} className="text-canva-yellow" />
@@ -689,6 +814,116 @@ const CaseStudySection = ({ icon, title, content }) => (
     </p>
   </div>
 );
+
+const TechnicalBreakdown = ({ breakdown }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (!breakdown) return null;
+
+  return (
+    <div className="mt-12 mb-8 border border-border/50 rounded-3xl overflow-hidden bg-secondary/10">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-6 flex items-center justify-between hover:bg-secondary/20 transition-colors group"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-canva-purple/10 text-canva-purple flex items-center justify-center">
+            <Activity size={20} />
+          </div>
+          <div className="text-left">
+            <h4 className="font-black text-sm uppercase tracking-widest">Technical Breakdown</h4>
+            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-tighter">Engineering Depth & System Architecture</p>
+          </div>
+        </div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          className="text-muted-foreground group-hover:text-canva-purple transition-colors"
+        >
+          <ChevronDown size={24} />
+        </motion.div>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "circOut" }}
+            className="overflow-hidden"
+          >
+            <div className="p-6 pt-0 space-y-8">
+              <div className="h-px w-full bg-border/50" />
+              
+              {/* Architecture */}
+              <div className="space-y-3">
+                <h5 className="text-[10px] font-black text-canva-teal uppercase tracking-[0.2em]">Architecture Overview</h5>
+                <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+                  {breakdown.architecture}
+                </p>
+              </div>
+
+              {/* Highlights */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <h5 className="text-[10px] font-black text-canva-purple uppercase tracking-[0.2em]">Engineering Highlights</h5>
+                  <ul className="space-y-2">
+                    {breakdown.highlights.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-canva-purple mt-1 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Diagram */}
+                {breakdown.diagram && (
+                  <div className="space-y-3">
+                    <h5 className="text-[10px] font-black text-canva-yellow uppercase tracking-[0.2em]">System Flow</h5>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {breakdown.diagram.map((step, i) => (
+                        <React.Fragment key={i}>
+                          <div className="px-3 py-1.5 rounded-lg bg-background border border-border/50 text-[9px] font-bold uppercase tracking-widest text-foreground shadow-sm">
+                            {step}
+                          </div>
+                          {i < breakdown.diagram.length - 1 && (
+                            <ChevronRight size={14} className="text-muted-foreground/50" />
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Code Snippet */}
+              {breakdown.snippet && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h5 className="text-[10px] font-black text-canva-pink uppercase tracking-[0.2em]">Core Logic Snippet</h5>
+                    <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase opacity-50">
+                      <Terminal size={12} /> read-only
+                    </div>
+                  </div>
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-canva-purple/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <pre className="relative p-6 rounded-2xl bg-[#0d0d0d] text-[11px] font-mono leading-relaxed overflow-x-auto border border-white/5 shadow-2xl">
+                      <code className="text-blue-400">
+                        {breakdown.snippet}
+                      </code>
+                    </pre>
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 
 const StatusIndicator = ({ url }) => {
   const [status, setStatus] = useState("checking");
@@ -765,7 +1000,20 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
           )}
         >
           <div className="relative h-56 md:h-64 rounded-[2rem] overflow-hidden mb-8 shadow-inner border border-border/20">
+            {project.badges && (
+              <div className="absolute top-4 right-4 z-30 flex flex-col gap-2 items-end">
+                {project.badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[8px] font-black uppercase tracking-widest text-white shadow-lg"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
             <img
+
               src={project.image}
               alt={project.title}
               width={800}
@@ -828,37 +1076,44 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
             <div className="mt-auto pt-8 flex items-center justify-between border-t border-border/50">
               <div className="flex gap-6">
                 {project.demoUrl && project.demoUrl !== "#" && (
+                  <Magnetic>
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-[10px] font-black text-canva-teal hover:scale-110 transition-all uppercase tracking-[0.2em]"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-canva-teal/10 flex items-center justify-center">
+                        <ExternalLink size={16} />
+                      </div>
+                      Live
+                    </a>
+                  </Magnetic>
+                )}
+                <Magnetic>
                   <a
-                    href={project.demoUrl}
+                    href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-[10px] font-black text-canva-teal hover:scale-110 transition-all uppercase tracking-[0.2em]"
+                    className="flex items-center gap-2 text-[10px] font-black text-foreground/80 hover:text-canva-purple hover:scale-110 transition-all uppercase tracking-[0.2em]"
                   >
-                    <div className="w-8 h-8 rounded-full bg-canva-teal/10 flex items-center justify-center">
-                      <ExternalLink size={16} />
+                    <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center">
+                      <Github size={16} />
                     </div>
-                    Live
+                    Code
                   </a>
-                )}
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[10px] font-black text-foreground/80 hover:text-canva-purple hover:scale-110 transition-all uppercase tracking-[0.2em]"
-                >
-                  <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center">
-                    <Github size={16} />
-                  </div>
-                  Code
-                </a>
+                </Magnetic>
               </div>
-              <button
-                onClick={onViewCase}
-                className="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground group-hover:bg-canva-purple group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-canva-purple/20"
-              >
-                <ArrowRight size={20} />
-              </button>
+              <Magnetic>
+                <button
+                  onClick={onViewCase}
+                  className="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground group-hover:bg-canva-purple group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-canva-purple/20"
+                >
+                  <ArrowRight size={20} />
+                </button>
+              </Magnetic>
             </div>
+
           </div>
         </div>
       </Tilt>
