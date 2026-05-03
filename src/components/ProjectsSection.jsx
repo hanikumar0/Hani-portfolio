@@ -568,6 +568,14 @@ export const ProjectsSection = () => {
   const location = useLocation();
   const { projectId } = useParams();
 
+  const liveProjects = projects.filter((p) => p.demoUrl && p.demoUrl !== "#");
+  const filteredProjects = projects.filter((p) => {
+    if (activeCategory === "All") return true;
+    if (activeCategory === "Live & Hosted")
+      return p.demoUrl && p.demoUrl !== "#";
+    return p.category === activeCategory;
+  });
+
   useEffect(() => {
     if (projectId) {
       const project = projects.find(p => p.id.toString() === projectId);

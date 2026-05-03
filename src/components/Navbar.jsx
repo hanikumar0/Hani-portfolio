@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Magnetic } from "./Magnetic";
 import { Link, useLocation } from "react-router-dom";
-import { useSound } from "../hooks/use-sound";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -20,9 +19,6 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
-  const { play: playClick } = useSound("/sounds/click.mp3", 0.3);
-  const { play: playSwitch } = useSound("/sounds/switch.mp3", 0.4);
-  const { play: playHover } = useSound("/sounds/hover.mp3", 0.2);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +36,6 @@ export const Navbar = () => {
   }, []);
 
   const toggleTheme = () => {
-    playSwitch();
     if (isDarkMode) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
@@ -88,8 +83,6 @@ export const Navbar = () => {
                 <Magnetic key={item.name}>
                   <Link
                     to={item.href}
-                    onClick={playClick}
-                    onMouseEnter={playHover}
                     className={cn(
                       "px-6 py-2.5 text-[11px] font-black tracking-[0.2em] transition-all duration-500 uppercase rounded-full relative group",
                       location.pathname === item.href
@@ -122,7 +115,6 @@ export const Navbar = () => {
 
             <a
               href="#contact"
-              onClick={playClick}
               className="px-6 py-3 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-[10px] tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-canva-purple/20"
             >
               HIRE ME

@@ -4,14 +4,10 @@ import { motion } from "framer-motion";
 import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import { Magnetic } from "./Magnetic";
-import { useSound } from "../hooks/use-sound";
 
 import { Desk3D } from "./Desk3D";
 
 export const HeroSection = () => {
-  const { play: playClick } = useSound("/sounds/click.mp3", 0.3);
-  const { play: playHover } = useSound("/sounds/hover.mp3", 0.2);
-  const { play: playPop } = useSound("/sounds/switch.mp3", 0.2);
 
   return (
     <section
@@ -27,7 +23,6 @@ export const HeroSection = () => {
         drag
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         style={{ touchAction: "none" }}
-        onDragStart={playPop}
         className="sticker hidden lg:block top-40 left-20 z-20 cursor-grab active:cursor-grabbing"
         initial={{ y: 0, rotate: -5 }}
         animate={{ y: [0, -10, 0], rotate: [-5, -2, -5] }}
@@ -127,8 +122,6 @@ export const HeroSection = () => {
               <Magnetic>
                 <Link
                   to="/contact"
-                  onClick={playClick}
-                  onMouseEnter={playHover}
                   className="px-8 py-4 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.2em] uppercase shadow-xl shadow-canva-purple/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
                 >
                   <Mail size={20} />
@@ -138,8 +131,6 @@ export const HeroSection = () => {
               <Magnetic>
                 <a
                   href="#projects"
-                  onClick={playClick}
-                  onMouseEnter={playHover}
                   className="secondary-button"
                 >
                   <Briefcase size={20} />
@@ -151,8 +142,6 @@ export const HeroSection = () => {
                   href="https://drive.google.com/file/d/15EnYTeJd5volCMP0l_zDt8Isf-KjqdHy/view?usp=drivesdk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={playClick}
-                  onMouseEnter={playHover}
                   className="px-8 py-4 rounded-full border-2 border-border font-black text-[10px] tracking-[0.2em] uppercase hover:bg-secondary transition-all flex items-center gap-2"
                 >
                   <Download size={20} />
