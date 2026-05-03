@@ -86,7 +86,7 @@ const ExperienceCard = ({ exp, index }) => (
       <div className="bg-card border border-border/50 rounded-[3rem] overflow-hidden hover:border-canva-purple/30 transition-all duration-500 shadow-sm hover:shadow-2xl flex flex-col md:flex-row h-full">
         {/* Left Side: Meta Info */}
         <div className={`w-full md:w-1/3 p-10 flex flex-col justify-between bg-${exp.color}/5 relative border-b md:border-b-0 md:border-r border-border/50`}>
-          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-canva-purple/20 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-[linear-gradient(to_right,transparent,rgba(125,42,232,0.2),transparent)]" />
           
           <div>
             <div className="flex items-center gap-3 text-canva-purple mb-6">

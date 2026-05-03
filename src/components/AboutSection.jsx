@@ -119,7 +119,7 @@ export const AboutSection = () => {
                   I don’t just write code; I engineer solutions that <span className="text-canva-purple">bridge the gap</span> between complex logic and human interaction.
                 </p>
                 <div className="mt-8 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-linear-to-r from-canva-purple to-canva-pink p-0.5 shadow-lg shadow-canva-purple/20">
+                  <div className="w-12 h-12 rounded-full bg-canva-gradient-accent p-0.5 shadow-lg shadow-canva-purple/20">
                     <div className="w-full h-full rounded-full bg-card flex items-center justify-center font-black text-xs">HK</div>
                   </div>
                   <div>

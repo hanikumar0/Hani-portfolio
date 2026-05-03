@@ -251,6 +251,14 @@
     pointer-events: none;
     will-change: transform, opacity;
   }
+
+  .bg-canva-gradient-main {
+    background: linear-gradient(to right, var(--color-canva-teal), var(--color-canva-purple)) !important;
+  }
+
+  .bg-canva-gradient-accent {
+    background: linear-gradient(to right, var(--color-canva-purple), var(--color-canva-pink)) !important;
+  }
 }
 
 .custom-scrollbar::-webkit-scrollbar {

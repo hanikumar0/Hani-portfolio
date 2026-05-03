@@ -209,7 +209,7 @@ export const ContactSection = () => {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-6 rounded-3xl bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.3em] uppercase shadow-xl shadow-canva-purple/20 flex items-center justify-center gap-4 group disabled:opacity-70"
+                  className="w-full py-6 rounded-3xl bg-canva-gradient-accent text-white font-black text-xs tracking-[0.3em] uppercase shadow-xl shadow-canva-purple/20 flex items-center justify-center gap-4 group disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

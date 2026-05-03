@@ -96,7 +96,7 @@ export const Desk3D = () => {
                 <PerspectiveCamera makeDefault position={[0, 0, 6]} fov={45} />
                 <Environment preset="city" />
                 <ambientLight intensity={0.5} />
-                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} />
+                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} distance={0} decay={2} castShadow />
                 <pointLight position={[-10, -10, -10]} intensity={1} color="#7d2ae8" />
 
                 <PresentationControls
@@ -113,9 +113,9 @@ export const Desk3D = () => {
                 <ContactShadows
                     position={[0, -2.5, 0]}
                     opacity={0.4}
-                    scale={10}
-                    blur={2.5}
-                    far={2}
+                    scale={20}
+                    blur={2}
+                    far={4.5}
                     color="#7d2ae8"
                 />
             </Canvas>

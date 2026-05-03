@@ -71,7 +71,7 @@ export const Navbar = () => {
               className="text-2xl font-black tracking-tighter flex items-center gap-2"
               to="/"
             >
-              <div className="w-10 h-10 bg-linear-to-br from-canva-teal to-canva-purple rounded-xl flex items-center justify-center text-white text-xl">H</div>
+              <div className="w-10 h-10 bg-canva-gradient-main rounded-xl flex items-center justify-center text-white text-xl">H</div>
               <span className="hidden sm:inline-block font-black text-foreground">HANI</span>
             </Link>
           </motion.div>
@@ -93,7 +93,7 @@ export const Navbar = () => {
                     {location.pathname === item.href && (
                       <motion.div
                         layoutId="nav-active"
-                        className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-canva-teal),var(--color-canva-purple))] rounded-full -z-10 shadow-lg shadow-canva-purple/20"
+                        className="absolute inset-0 bg-canva-gradient-main rounded-full -z-10 shadow-lg shadow-canva-purple/20"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -115,7 +115,7 @@ export const Navbar = () => {
 
             <a
               href="#contact"
-              className="px-6 py-3 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-[10px] tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-canva-purple/20"
+              className="px-6 py-3 rounded-full bg-canva-gradient-accent text-white font-black text-[10px] tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-canva-purple/20"
             >
               HIRE ME
             </a>
@@ -186,7 +186,7 @@ export const Navbar = () => {
                   transition={{ delay: navItems.length * 0.1 }}
                   href="#contact"
                   onClick={() => setIsMenuOpen(false)}
-                  className="mt-6 px-8 py-4 rounded-[2rem] bg-linear-to-r from-canva-purple to-canva-pink text-white text-xl font-black flex items-center justify-center gap-3 shadow-2xl shadow-canva-purple/20"
+                  className="mt-6 px-8 py-4 rounded-[2rem] bg-canva-gradient-accent text-white text-xl font-black flex items-center justify-center gap-3 shadow-2xl shadow-canva-purple/20"
                 >
                   <Mail size={24} />
                   HIRE ME
