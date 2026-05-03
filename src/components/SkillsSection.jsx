@@ -23,30 +23,65 @@ import {
 } from "recharts";
 
 const skills = [
-  // Featured / Large
-  { name: "React", level: 95, category: "frontend", icon: "⚛️", size: "large", desc: "Enterprise-grade UI development" },
-  { name: "Node.js", level: 90, category: "backend", icon: "🟢", size: "large", desc: "Scalable event-driven systems" },
-  { name: "AI Integration", level: 88, category: "ai", icon: "🧠", size: "medium", desc: "LLM & Vector Search orchestration" },
-  { name: "System Design", level: 92, category: "architecture", icon: "🏗️", size: "medium", desc: "Microservices & Distributed logic" },
+  // Featured / Core Focus (B.Tech Fresher Strengths)
+  { name: "Full Stack Dev", level: 95, category: "software", icon: "💻", size: "large", desc: "Next.js, Node.js, Spring & Go" },
+  { name: "AI & Deep Learning", level: 88, category: "ai", icon: "🧠", size: "large", desc: "PyTorch, TensorFlow & NLP" },
+  { name: "Cloud Architecture", level: 85, category: "cloud", icon: "☁️", size: "medium", desc: "AWS, Azure & Kubernetes" },
+  { name: "Data Analytics", level: 92, category: "analytics", icon: "📊", size: "medium", desc: "SQL, Tableau & Web Scraping" },
+  { name: "Core CS & OOP", level: 95, category: "software", icon: "⚙️", size: "medium", desc: "OS, DBMS & Data Structures" },
 
-  // Standard
-  { name: "Next.js", level: 85, category: "frontend", icon: "▲", size: "small" },
-  { name: "TypeScript", level: 88, category: "frontend", icon: "TS", size: "small" },
-  { name: "Tailwind CSS", level: 95, category: "frontend", icon: "🎨", size: "small" },
-  { name: "MongoDB", level: 85, category: "backend", icon: "🍃", size: "small" },
-  { name: "PostgreSQL", level: 80, category: "backend", icon: "🐘", size: "small" },
-  { name: "Firebase", level: 85, category: "backend", icon: "🔥", size: "small" },
-  { name: "React Native", level: 82, category: "mobile", icon: "📱", size: "small" },
-  { name: "Expo", level: 88, category: "mobile", icon: "🚀", size: "small" },
-  { name: "Docker", level: 75, category: "tools", icon: "🐳", size: "small" },
-  { name: "Git", level: 92, category: "tools", icon: "🐙", size: "small" },
+  // Software & Languages
+  { name: "C / C++", level: 90, category: "software", icon: "🔹", size: "small" },
+  { name: "Python & Go", level: 92, category: "software", icon: "🚀", size: "small" },
+  { name: "Java (Spring/J2EE)", level: 85, category: "software", icon: "☕", size: "small" },
+  { name: "Kotlin & Dart", level: 80, category: "software", icon: "📱", size: "small" },
+  { name: "OOP & Design Patterns", level: 92, category: "software", icon: "🧩", size: "small" },
+
+  // Frontend & Mobile
+  { name: "React & Next.js", level: 95, category: "frontend", icon: "⚛️", size: "small" },
+  { name: "Flutter & RN", level: 88, category: "frontend", icon: "📱", size: "small" },
+  { name: "Redux & UI Design", level: 90, category: "frontend", icon: "🎨", size: "small" },
+  { name: "Responsive Web", level: 95, category: "frontend", icon: "📱", size: "small" },
+  { name: "WAI-ARIA (Access)", level: 85, category: "frontend", icon: "♿", size: "small" },
+
+  // AI, ML & Specialized
+  { name: "TensorFlow & Keras", level: 82, category: "ai", icon: "🤖", size: "small" },
+  { name: "PyTorch & NLP", level: 85, category: "ai", icon: "🗣️", size: "small" },
+  { name: "Computer Vision", level: 80, category: "ai", icon: "👁️", size: "small" },
+  { name: "NumPy & SciPy", level: 90, category: "ai", icon: "🧪", size: "small" },
+  { name: "Image Processing", level: 85, category: "ai", icon: "🖼️", size: "small" },
+
+  // Data, Analytics & Web Scraping
+  { name: "Web Scraping", level: 95, category: "analytics", icon: "🕸️", size: "small" },
+  { name: "SQL & Redis", level: 92, category: "analytics", icon: "🗄️", size: "small" },
+  { name: "Tableau & Power BI", level: 88, category: "analytics", icon: "📈", size: "small" },
+  { name: "SEO & Analytics", level: 85, category: "analytics", icon: "🔍", size: "small" },
+  { name: "SAS & Stats", level: 80, category: "analytics", icon: "📊", size: "small" },
+  { name: "Data Mining", level: 85, category: "analytics", icon: "⛏️", size: "small" },
+
+  // Cloud, DevOps & Infrastructure
+  { name: "Docker & K8s", level: 85, category: "cloud", icon: "🐳", size: "small" },
+  { name: "CI/CD & Git", level: 92, category: "cloud", icon: "🔄", size: "small" },
+  { name: "Heroku & OpenStack", level: 82, category: "cloud", icon: "☁️", size: "small" },
+  { name: "Azure Cloud", level: 80, category: "cloud", icon: "🟦", size: "small" },
+  { name: "Network Security", level: 85, category: "cloud", icon: "🛡️", size: "small" },
+
+  // Core CS, Tools & Quality
+  { name: "Operating Systems", level: 90, category: "tools", icon: "💻", size: "small" },
+  { name: "PHP & Angular", level: 82, category: "software", icon: "🐘", size: "small" },
+  { name: "ISO 27001", level: 75, category: "tools", icon: "📜", size: "small" },
+  { name: "Jira & Agile", level: 90, category: "tools", icon: "📋", size: "small" },
+  { name: "Troubleshooting", level: 92, category: "tools", icon: "🛠️", size: "small" },
 ];
 
 const categories = [
-  { id: "all", label: "All Skills", icon: <Layers size={18} /> },
-  { id: "frontend", label: "Frontend", icon: <Code2 size={18} /> },
-  { id: "backend", label: "Backend", icon: <Server size={18} /> },
+  { id: "all", label: "Full Matrix", icon: <Layers size={18} /> },
+  { id: "software", label: "Languages & CS", icon: <Code2 size={18} /> },
+  { id: "frontend", label: "Web & Mobile", icon: <Smartphone size={18} /> },
   { id: "ai", label: "AI & ML", icon: <Cpu size={18} /> },
+  { id: "analytics", label: "Data & Scraping", icon: <Target size={18} /> },
+  { id: "cloud", label: "Cloud & DevOps", icon: <Zap size={18} /> },
+  { id: "tools", label: "Tools & Core", icon: <Wrench size={18} /> },
 ];
 
 export const SkillsSection = () => {
