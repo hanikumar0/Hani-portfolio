@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ExternalLink,
   Github,
@@ -690,6 +690,63 @@ const CaseStudySection = ({ icon, title, content }) => (
   </div>
 );
 
+const StatusIndicator = ({ url }) => {
+  const [status, setStatus] = useState("checking");
+
+  useEffect(() => {
+    if (!url || url === "#") return;
+
+    const checkStatus = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      try {
+        // Using no-cors as a best effort to check reachability without hitting CORS blocks
+        // In a production app, a backend proxy would be more reliable
+        await fetch(url, {
+          method: "GET",
+          mode: "no-cors",
+          signal: controller.signal,
+        });
+        setStatus("live");
+      } catch (err) {
+        setStatus("down");
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    };
+
+    // Small random delay to stagger pings if many cards load at once
+    const timer = setTimeout(checkStatus, Math.random() * 2000);
+    return () => {
+      clearTimeout(timer);
+      // controller.abort() would go here if we kept a ref
+    };
+  }, [url]);
+
+  if (!url || url === "#") return null;
+
+  return (
+    <div
+      className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/30 backdrop-blur-md border border-border/50"
+      title={status === "live" ? "System is operational" : status === "down" ? "System unavailable" : "Checking status..."}
+    >
+      <div
+        className={cn(
+          "w-2 h-2 rounded-full transition-all duration-500",
+          status === "checking" ? "bg-canva-yellow animate-pulse" :
+          status === "live" ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse" :
+          "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]"
+        )}
+      />
+      <span className="text-[8px] font-black uppercase tracking-[0.1em] opacity-80 tabular-nums">
+        {status === "checking" ? "Ping" : status === "live" ? "Live" : "Down"}
+      </span>
+    </div>
+  );
+};
+
+
 const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
   return (
     <motion.article
@@ -744,16 +801,22 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
           </div>
 
           <div className="flex flex-col flex-1">
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-4 py-1.5 text-[9px] font-black bg-secondary/80 text-muted-foreground border border-border/50 rounded-full uppercase tracking-widest shadow-sm group-hover:bg-canva-purple/5 group-hover:text-canva-purple transition-colors duration-300"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <div className="flex flex-wrap gap-2">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-1.5 text-[9px] font-black bg-secondary/80 text-muted-foreground border border-border/50 rounded-full uppercase tracking-widest shadow-sm group-hover:bg-canva-purple/5 group-hover:text-canva-purple transition-colors duration-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              {project.demoUrl && project.demoUrl !== "#" && (
+                <StatusIndicator url={project.demoUrl} />
+              )}
             </div>
+
 
             <h3 className="text-3xl font-black mb-4 text-foreground leading-[1.1] tracking-tight group-hover:text-canva-purple transition-colors duration-300">
               {project.title}
