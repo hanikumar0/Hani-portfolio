@@ -1105,12 +1105,37 @@ const ProjectCard = ({ project, index, onViewCase, isLiveSection }) => {
                 </Magnetic>
               </div>
               <Magnetic>
-                <button
-                  onClick={onViewCase}
-                  className="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground group-hover:bg-canva-purple group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-canva-purple/20"
+                <a
+                  href={
+                    project.demoUrl && project.demoUrl !== "#"
+                      ? project.demoUrl
+                      : project.githubUrl !== "#"
+                      ? project.githubUrl
+                      : undefined
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm",
+                    project.demoUrl !== "#" || project.githubUrl !== "#"
+                      ? "bg-secondary/80 text-muted-foreground group-hover:bg-canva-purple group-hover:text-white hover:shadow-lg hover:shadow-canva-purple/20 cursor-pointer"
+                      : "bg-secondary/30 text-muted-foreground/30 cursor-not-allowed"
+                  )}
+                  title={
+                    project.demoUrl && project.demoUrl !== "#"
+                      ? "View Live Project"
+                      : project.githubUrl !== "#"
+                      ? "View Source Code"
+                      : "Link not available"
+                  }
+                  onClick={(e) => {
+                    if (project.demoUrl === "#" && project.githubUrl === "#") {
+                      e.preventDefault();
+                    }
+                  }}
                 >
                   <ArrowRight size={20} />
-                </button>
+                </a>
               </Magnetic>
             </div>
 
