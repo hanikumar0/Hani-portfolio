@@ -93,7 +93,7 @@ export const Navbar = () => {
                     {location.pathname === item.href && (
                       <motion.div
                         layoutId="nav-active"
-                        className="absolute inset-0 bg-linear-to-r from-canva-teal to-canva-purple rounded-full -z-10 shadow-lg shadow-canva-purple/20"
+                        className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-canva-teal),var(--color-canva-purple))] rounded-full -z-10 shadow-lg shadow-canva-purple/20"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}

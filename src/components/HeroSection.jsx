@@ -122,7 +122,7 @@ export const HeroSection = () => {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="px-8 py-4 rounded-full bg-linear-to-r from-canva-purple to-canva-pink text-white font-black text-xs tracking-[0.2em] uppercase shadow-xl shadow-canva-purple/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+                  className="px-8 py-4 rounded-full bg-[linear-gradient(to_right,var(--color-canva-purple),var(--color-canva-pink))] text-white font-black text-xs tracking-[0.2em] uppercase shadow-xl shadow-canva-purple/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
                 >
                   <Mail size={20} />
                   Hire Me
