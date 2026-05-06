@@ -27,6 +27,36 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const projects = [
   {
+    id: 39,
+    title: "Nexus – Multi-Series Forecasting Engine",
+    category: "Data Science & AI",
+    description: "A production-grade time series forecasting system that predicts multi-series sales across regions using automated model selection and a FastAPI-powered visualization dashboard.",
+    problem: "Businesses often struggle with accurately predicting demand across diverse regions, leading to inefficient inventory management and missed revenue opportunities.",
+    solution: "Engineered a modular forecasting pipeline featuring automated preprocessing, champion model selection (SARIMA, Prophet, XGBoost, LSTM), and a premium Glassmorphism dashboard.",
+    outcome: "Achieved high-precision 8-week forecasts with automated RMSE-based model optimization, streamlining regional supply chain planning and improving accuracy by 35%.",
+    image: "/projects/forecasting_system.png",
+    tags: ["Python", "FastAPI", "SARIMA", "Prophet", "LSTM", "XGBoost", "Data Analysis"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/hanikumar0/Forecasting-System",
+    featured: true,
+    badges: ["Deep Learning", "Automated ML"],
+    technicalBreakdown: {
+      architecture: "Modular pipeline architecture: Automated Preprocessing -> Feature Engineering (Temporal Lags & Holiday Indicators) -> Model Factory -> Champion Selection (RMSE-based) -> FastAPI REST Service.",
+      highlights: [
+        "Automated model selection (Champion vs. Challenger) per data series",
+        "Advanced feature engineering with temporal lags and rolling statistics",
+        "FastAPI-driven backend with background re-training capabilities",
+        "Interactive Glassmorphism dashboard for history/forecast visualization"
+      ],
+      snippet: `# Champion Selection Logic
+def select_best_model(metrics_list):
+    """Selects the model with the lowest RMSE from the evaluation pool."""
+    return min(metrics_list, key=lambda x: x['rmse'])['model_name']`,
+      diagram: ["Data Input", "FE Pipeline", "Model Suite", "Champion Selector", "FastAPI Service", "UI Dashboard"]
+    }
+  },
+
+  {
     id: 38,
     title: "Synergy – SaaS Task Orchestrator",
     category: "Full Stack Development",
@@ -557,7 +587,7 @@ const useSyncData = (path) => {
   },
 ];
 
-const categories = ["All", "Live & Hosted", "Web Development", "Mobile Apps", "AI & ML", "Data Analytics"];
+const categories = ["All", "Live & Hosted", "Web Development", "Mobile Apps", "AI & ML", "Data Analytics", "Data Science & AI"];
 
 
 export const ProjectsSection = () => {
